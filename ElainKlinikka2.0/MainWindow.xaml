@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElainKlinikka2._0"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Eläinklinikka" Height="450" Width="800">
     <Grid>
-        
+        <TabControl x:Name="tabControl">
+            <TabItem Header="Etusivu">
+                <Grid Background="#FFE5E5E5">
+
+                    <Button x:Name="avaaKirjButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="349,218,0,0" VerticalAlignment="Top" Width="75" Click="avaaKirjButtonClick"/>
+                    <Button x:Name="kirjauduUlosButton" Content="Kirjaudu ulos" Visibility="Hidden" HorizontalAlignment="Left" Margin="477,218,0,0" VerticalAlignment="Top" Width="75" Click="kirjauduUlosButton_Click"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Haku" Height="20" VerticalAlignment="Top">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Background="#FF60B3FF">
+                        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
+                        <ComboBox x:Name="tyyppiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox x:Name="lajiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <Button x:Name="haeButton" IsEnabled="False" 
+                                Width="100" VerticalAlignment="Center" 
+                                Content="Hae" Margin="10,0,0,0"
+                                Click="haeButton_Click">
+                        </Button>
+                        <Button x:Name="tyhjääButton" IsEnabled="False" 
+                                Width="100" VerticalAlignment="Center" 
+                                Content="Tyhjää" Margin="10,0,0,0"
+                                Click="tyhjääButton_Click">
+                        </Button>
+                    </StackPanel>
+                    <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding IDNumero}"></GridViewColumn>
+                                <GridViewColumn Header="Nimi" Width="150" DisplayMemberBinding="{Binding TeoksenNimi}"></GridViewColumn>
+                                <GridViewColumn Header="Kuvaus" Width="150" DisplayMemberBinding="{Binding TeoksenKuvaus}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

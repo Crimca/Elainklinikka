@@ -1,0 +1,18 @@
+﻿<Window x:Class="ElainKlinikka2._0.KirjautumisSivu"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElainKlinikka2._0"
+      mc:Ignorable="d" 
+      d:DesignHeight="351.887" d:DesignWidth="618.868"
+      Title="Kirjautumis sivu">
+
+    <Grid>
+        <Button x:Name="kirjauduButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top" Width="75" Click="kirjauduClick" IsDefault="True" IsEnabled="False"/>
+        <Button x:Name="peruutaButton" Content="Peruuta" HorizontalAlignment="Left" Margin="333,187,0,0" VerticalAlignment="Top" Width="75" Click="peruutaClick"/>
+        <TextBox x:Name="usernameBox" HorizontalAlignment="Center" Height="23" Margin="0,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="usernameBox_TextChanged"/>
+        <PasswordBox x:Name="salasanaBox" HorizontalAlignment="Center" Height="23" Margin="0,145,0,0" VerticalAlignment="Top" Width="120" PasswordChanged="salasanaBox_TextChanged"/>
+
+    </Grid>
+</Window>
