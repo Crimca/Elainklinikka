@@ -100,20 +100,20 @@ namespace ElainKlinikka2._0
             PäivitäKäyttöliittymä();
         }
 
-        /*private Kirjasto valittuKirjasto;
+        private Klinikka valittuKlinikka;
         public MainWindow()
         {
-            valittuKirjasto = new Kirjasto("Palosaaren Kirjasto", "Pikitehtaankatuu 19");
+            valittuKlinikka = new Klinikka("Palosaaren Klinikka", "Pikitehtaankatuu 19");
 
-            valittuKirjasto.LuoMockDataa(30);
+            valittuKlinikka.LuoMockDataa(30);
 
             InitializeComponent();
 
             //kerrotaan listview komponentille, että sen pitää näyttää
             // valitun kirjaston teokset listaa sen sisällä
             //ListSource kertoo itemeiden lähteen ja jokainen näytetään rivinä ListViewn sisällä
-            dataGrid.ItemsSource = valittuKirjasto.Teokset;
-        } */
+            dataGrid.ItemsSource = valittuKlinikka.Eläimet;
+        } 
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -132,18 +132,18 @@ namespace ElainKlinikka2._0
             }
         }
 
-        /*private void haeButton_Click(object sender, RoutedEventArgs e)
+        private void haeButton_Click(object sender, RoutedEventArgs e)
         {
             string hakutermi = textBox.Text.Trim();
 
-            List<Teos> osumat = valittuKirjasto.Teokset.FindAll(
-                x => x.TeoksenNimi.Contains(hakutermi) == true ||
-                     x.TeoksenKuvaus.Contains(hakutermi) == true
+            List<Eläin> osumat = valittuKlinikka.Eläimet.FindAll(
+                x => x.EläimenNimi.Contains(hakutermi) == true ||
+                     x.EläimenKuvaus.Contains(hakutermi) == true
                 );
 
             // päivittää teoslistan hakijalle
             dataGrid.ItemsSource = osumat;
-        }*/
+        }
 
         private void tyhjääButton_Click(object sender, RoutedEventArgs e)
         {
@@ -151,21 +151,21 @@ namespace ElainKlinikka2._0
             //TODO tyhjää myös muut hakuvalinnat
 
             //Palautetaan alkuperäinen lista
-            //dataGrid.ItemsSource = valittuKirjasto.Teokset;
+            dataGrid.ItemsSource = valittuKlinikka.Eläimet;
         }
 
-        /*private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (dataGrid.SelectedItem != null)
             {
-                //Teos klikattuTeos = (Teos)dataGrid.SelectedItem;
+                Eläin klikattuEläin = (Eläin)dataGrid.SelectedItem;
 
                 TabItem välilehtiJoOlemassa = null;
                 for (int i = 0; i < tabControl.Items.Count; i++)
                 {
                     TabItem t = (TabItem)tabControl.Items.GetItemAt(i);
-                    //string tHeader = (string)t.Header;
-                    /*if (tHeader.Contains(klikattuTeos.TeoksenNimi) == true)
+                    string tHeader = (string)t.Header;
+                    if (tHeader.Contains(klikattuEläin.EläimenNimi) == true)
                     {
                         välilehtiJoOlemassa = t;
                         break;
@@ -178,22 +178,21 @@ namespace ElainKlinikka2._0
                 }
                 else
                 {
-                    //CustomTabItem t = new CustomTabItem();
+                    CustomTabItem t = new CustomTabItem();
                     // Luodaan olio tab item sisällöstä
-                    //CustomTabContent tcont = new CustomTabContent();
+                    CustomTabContent tcont = new CustomTabContent();
 
                     // Laitetaan tab itemin otsikkoon teksti
-                    //t.Header = klikattuTeos.TeoksenNimi;
+                    t.Header = klikattuEläin.EläimenNimi;
 
                     // Tämä on olio siitä testidatasta, jota halutaan näyttää (esim. Teos/Asiakas)
-                    //Teos tl = new Teos(1, "Testi", "testi2");
+                    Eläin tl = new Eläin(1, "Testi", "testi2");
                     // Asetetaan testiolioon joku näytettävä data
 
 
-                    //Teos tl = new Teos(1, "", "");
                     //tl.Sivumäärä = klikattuTeos.Sivumäärä;
                     //tl.Kesto = klikattuTeos.Kesto;
-                    //tl.TeoksenKuvaus = klikattuTeos.TeoksenKuvaus;
+                    tl.EläimenKuvaus = klikattuEläin.EläimenKuvaus;
 
                     // Sijoitetaan TabItem sisällön DataContext-muuttujaan yllä luotu olio
                     // DataContext:iin sijoitettu olio on se, johon DataBinding-linkitykset tehdään
@@ -201,16 +200,16 @@ namespace ElainKlinikka2._0
 
                     // Asetetaan TabItem:n sisällöksi meidän CustomTabContent olio
 
-                    //tcont.DataContext = tl;
-                    //t.Content = tcont;
+                    tcont.DataContext = tl;
+                    t.Content = tcont;
 
                     // Lisätään lopuksi meidän custom tab item näkymään
-                    //tabControl.Items.Add(t);
-                    //tabControl.SelectedItem = t;
-                }*/
+                    tabControl.Items.Add(t);
+                    tabControl.SelectedItem = t;
+                }
 
             }
         }
 
-    //}
-//}
+   }
+}
