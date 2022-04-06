@@ -33,12 +33,14 @@
                         <Button x:Name="haeButton" IsEnabled="False" 
                                 Width="100" VerticalAlignment="Center" 
                                 Content="Hae" Margin="10,0,0,0"
-                                Click="haeButton_Click">
+                                Click="haeButton_Click"
+                                IsDefault="True">
                         </Button>
                         <Button x:Name="tyhjääButton" IsEnabled="False" 
                                 Width="100" VerticalAlignment="Center" 
                                 Content="Tyhjää" Margin="10,0,0,0"
-                                Click="tyhjääButton_Click">
+                                Click="tyhjääButton_Click"
+                                IsCancel="True">
                         </Button>
                     </StackPanel>
                     <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
