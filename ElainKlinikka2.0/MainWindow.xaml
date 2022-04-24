@@ -17,7 +17,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Asiakas" Height="20" VerticalAlignment="Bottom">
+            <TabItem Header="Asiakkaan lisäys" Height="20" VerticalAlignment="Bottom">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
