@@ -16,44 +16,6 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Haku" Height="20" VerticalAlignment="Top">
-                <Grid Background="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="9*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" Background="#FF60B3FF">
-                        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
-                        <ComboBox x:Name="tyyppiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        <ComboBox x:Name="lajiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        
-                        <Button x:Name="haeButton" IsEnabled="False" 
-                                Width="100" VerticalAlignment="Center" 
-                                Content="Hae" Margin="10,0,0,0"
-                                Click="haeButton_Click"
-                                IsDefault="True">
-                        </Button>
-                        <Button x:Name="tyhjääButton" IsEnabled="False" 
-                                Width="100" VerticalAlignment="Center" 
-                                Content="Tyhjää" Margin="10,0,0,0"
-                                Click="tyhjääButton_Click"
-                                IsCancel="True">
-                        </Button>
-                    </StackPanel>
-                    <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding IDNumero}"></GridViewColumn>
-                                <GridViewColumn Header="Nimi" Width="150" DisplayMemberBinding="{Binding EläimenNimi}"></GridViewColumn>
-                                <GridViewColumn Header="Kuvaus" Width="150" DisplayMemberBinding="{Binding EläimenKuvaus}"></GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
 
             <TabItem Header="Asiakas" Height="20" VerticalAlignment="Bottom">
                 <Grid Background="White">
@@ -84,6 +46,71 @@
                 </Grid>
             </TabItem>
 
+            <TabItem Header="Haku" Height="20" VerticalAlignment="Bottom">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Background="#a8328b">
+                        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
+                        <ComboBox x:Name="tyyppiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox x:Name="lajiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <Button x:Name="haeButton" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Hae" Margin="10,0,0,0" Click="haeButton_Click"></Button>
+                        <Button x:Name="tyhjääButton" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
+                    </StackPanel>
+                    <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn x:Name="id" Header="ID" Width="50" DisplayMemberBinding="{Binding IdNumero}"></GridViewColumn>
+                                <GridViewColumn x:Name="nimi" Header="Nimi" Width="150" DisplayMemberBinding="{Binding TeoksenNimi}"></GridViewColumn>
+                                <GridViewColumn x:Name="kuvaus" Header="Kuvaus" Width="150" DisplayMemberBinding="{Binding TeoksenKuvaus}"></GridViewColumn>
+                                <GridViewColumn x:Name="lainaaika" Header="Laina-aika" Width="150" DisplayMemberBinding="{Binding Laina_aika}"></GridViewColumn>
+                                <GridViewColumn x:Name="sivumäärä" Header="Sivumäärä" Width="150" DisplayMemberBinding="{Binding Sivumäärä}"></GridViewColumn>
+                                <GridViewColumn x:Name="ikäraja" Header="Ikäraja" Width="150" DisplayMemberBinding="{Binding Ikäraja}"></GridViewColumn>
+                                <GridViewColumn x:Name="kesto" Header="Kesto" Width="150" DisplayMemberBinding="{Binding Kesto_min}"></GridViewColumn>
+                                <GridViewColumn x:Name="onkoKadonnut" Header="Kadonnut?" Width="150" DisplayMemberBinding="{Binding Kadonnut}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Asiakas haku" Height="20" VerticalAlignment="Bottom">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Background="#3293a8">
+                        <TextBox x:Name="textBoxTyöntekijä" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
+                        <ComboBox x:Name="IdBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox x:Name="sähköpostiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <Button x:Name="haeButtonTyöntekijä" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Hae" Margin="10,0,0,0" Click="haeButton_Click"></Button>
+                        <Button x:Name="tyhjääButtonTyöntekijä" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
+                    </StackPanel>
+                    <ListView x:Name="dataGridTyöntekijä" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding IdNumero}"></GridViewColumn>
+                                <GridViewColumn Header="Nimi" Width="150" DisplayMemberBinding="{Binding TeoksenNimi}"></GridViewColumn>
+                                <GridViewColumn Header="Sukunimi" Width="150" DisplayMemberBinding="{Binding TeoksenKuvaus}"></GridViewColumn>
+                                <GridViewColumn Header="Osoite" Width="150" DisplayMemberBinding="{Binding Laina_aika}"></GridViewColumn>
+                                <GridViewColumn Header="Paikkakunta" Width="150" DisplayMemberBinding="{Binding Sivumäärä}"></GridViewColumn>
+                                <GridViewColumn Header="Sähköposti" Width="150" DisplayMemberBinding="{Binding Ikäraja}"></GridViewColumn>
+                                <GridViewColumn Header="Lainat" Width="150" DisplayMemberBinding="{Binding Kesto_min}"></GridViewColumn>
+                                <GridViewColumn Header="Maksut" Width="150" DisplayMemberBinding="{Binding Kadonnut}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>           
+            
         </TabControl>
     </Grid>
 </Window>
