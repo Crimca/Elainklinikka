@@ -54,6 +54,36 @@
                     </ListView>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Asiakas" Height="20" VerticalAlignment="Bottom">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Background="#33FFBD">
+                        <Button x:Name="haeButtonAsiakas" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Päivitä" Margin="10,0,0,0" Click="haeButton_Click"></Button>
+                        <Button x:Name="tyhjääButtonAsiakas" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
+                    </StackPanel>
+                    <Label Content="Etunimi:" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
+                    <Label Content="Sukunimi:" HorizontalAlignment="Left" Margin="10,63,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
+                    <Label Content="Osoite:" HorizontalAlignment="Left" Margin="10,115,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
+                    <Label Content="Paikkakunta:" HorizontalAlignment="Left" Margin="10,163,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
+                    <Label Content="Sähköposti:" HorizontalAlignment="Left" Margin="10,213,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
+                    <Label Content="Puhelin:" HorizontalAlignment="Left" Margin="10,261,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasNimi" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,14,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    <TextBox x:Name="textbox_AsiakasSukunimi" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,67,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    <TextBox x:Name="textbox_AsiakasOsoite" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,119,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    <TextBox x:Name="textbox_AsiakasPaikkakunta" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,167,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    <TextBox x:Name="textbox_AsiakasEmail" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,217,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    <TextBox x:Name="textbox_AsiakasPuhnro" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,265,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                </Grid>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </Window>
