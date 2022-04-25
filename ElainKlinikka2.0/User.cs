@@ -23,13 +23,16 @@ namespace ElainKlinikka2._0
         /// </summary>
         public string UserEmail { get; private set; } = "";
 
+        public string UserPassword { get; private set; } = "";
 
 
-        public User(int id, string name, string email)
+
+        public User(int id, string name, string email, string password)
         {
             Id = id;
             Username = name;
             UserEmail = email;
+            UserPassword = password;
         }
 
         public string MakeDescription()

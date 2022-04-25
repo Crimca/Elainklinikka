@@ -15,7 +15,7 @@ namespace ElainKlinikka2._0
         /// <summary>
         /// The database path to load from.
         /// </summary>
-        private static string DB_PATH = @"..\..\lib.accdb";
+        private static string DB_PATH = @"U:\Ohjelmoinnin perusteet II\Eläinklinikka\ElainKlinikka2.0\lib.accdb";
 
         /// <summary>
         /// The instance that has been created in the application.
@@ -126,9 +126,9 @@ namespace ElainKlinikka2._0
                     int userId = myReader.GetInt32(0);
                     string userName = myReader.GetString(1);
                     string userEmail = myReader.GetString(2);
-
+                    string passWord = myReader.GetString(3);
                     // Create user
-                    User u = new User(userId, userName, userEmail);
+                    User u = new User(userId, userName, userEmail, passWord);
 
                     // Add to the list to be returned
                     foundUsers.Add(u);

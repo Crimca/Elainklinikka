@@ -48,11 +48,13 @@ namespace ElainKlinikka2._0
 
                 // Luetaan dialogi-ikkunasta käyttäjän syöttämä username ja salasana
                 string username = d.EnteredUsername;
-                string pw = d.EnteredPassword;
+                //string pw = d.EnteredPassword;
+                kirjautunutUsername = d.EnteredUsername;
 
+                PäivitäKäyttöliittymä();
                 // Demotarkistus, kovakoodatut arvot
                 // Nämä haettaisiin tietokannasta tmv
-                if (username.CompareTo("Hellu") == 0 &&
+                /*if (username.CompareTo("Hellu") == 0 &&
                     pw.CompareTo("qwerty") == 0)
                 {
                     MessageBox.Show("Kirjautunut käyttäjä: " + username);
@@ -66,7 +68,7 @@ namespace ElainKlinikka2._0
                 else
                 {
                     MessageBox.Show("Väärä tunnus tai salasana");
-                }
+                }*/
             }
 
         }

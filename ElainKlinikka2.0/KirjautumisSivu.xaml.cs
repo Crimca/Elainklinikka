@@ -24,6 +24,7 @@ namespace ElainKlinikka2._0
 
     public partial class KirjautumisSivu : Window
     {
+        private string kirjautunutUsername = "";
         public KirjautumisSivu()
         {
             InitializeComponent();
@@ -55,27 +56,58 @@ namespace ElainKlinikka2._0
             // Tämä kertoo, että dialogin suoritus peruuntui
             this.DialogResult = false;
         }
-
+        public string EnteredUsername = "";
         private void kirjauduClick(object sender, RoutedEventArgs e)
         {
+            
+
             // Tällä informoidaan MainWindow:lle, että käyttäjä suoritti dialogin loppuun
-            this.DialogResult = true;
-        }
+            List<User> u = DatabaseHandler.Instance.FindUsersWithEmail(usernameBox.Text);
 
-        /// <summary>
-        /// Property, jolla voimme lukea käyttäjän syöttämä salasana
-        /// </summary>
-        public string EnteredPassword
-        {
-            get { return salasanaBox.Password; }
-        }
+            if (u.Count == 1)
+            {
+                if (u[0].UserPassword.CompareTo(salasanaBox.Password) == 0)
+                {
+                    //salasana täsmää
+                    MessageBox.Show("Kirjautunut käyttäjä: " + usernameBox.Text);
 
-        /// <summary>
-        /// Property, jolla voimme lukea käyttäjän syöttämä username
-        /// </summary>
-        public string EnteredUsername
-        {
-            get { return usernameBox.Text; }
+                    // Tallennetaan kirjautuneen käyttäjän username muuttujaan, tilatietona
+                    EnteredUsername = usernameBox.Text;
+
+                    // Päivitetään käyttöliittymä, koska käyttäjä on kirjautunut
+                    this.DialogResult = true;
+                }
+                else
+                {
+                    // ei täsmää
+                    MessageBox.Show("Väärä tunnus tai salasana");
+                }
+            }
+            else if (u.Count == 0)
+            {
+                MessageBox.Show("Found no matching users.");
+            }
+            else
+            {
+                // More than one user
+                MessageBox.Show("Found " + u.Count + " matching users.");
+            }
+            /*
+
+            if (username.CompareTo(u[0].UserName) == 0 &&
+                   pw.CompareTo(u[0].UserPassword) == 0)
+            {
+                MessageBox.Show("Kirjautunut käyttäjä: " + username);
+            }
+            else
+            {
+                MessageBox.Show("Väärä tunnus tai salasana");
+            }*/
+
+           // this.DialogResult = true;
+
         }
     }
+
+
 }
