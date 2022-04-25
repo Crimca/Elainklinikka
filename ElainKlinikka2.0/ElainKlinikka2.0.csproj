@@ -75,6 +75,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DatabaseHandler.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="CustomTabContent.xaml.cs">
       <DependentUpon>CustomTabContent.xaml</DependentUpon>
     </Compile>

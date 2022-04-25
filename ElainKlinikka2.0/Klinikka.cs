@@ -25,7 +25,7 @@ namespace ElainKlinikka2._0
 
             for (int i = 0; i < lkm; i++)
             {
-                Eläin t = new Eläin(i, "Nimi" + i, "Hiihuu" + i);
+                Eläin t = new Eläin(i, "Nimi" + i, "Kissa" + i);
 
                 Eläimet.Add(t);
             }
