@@ -96,6 +96,7 @@ namespace ElainKlinikka2._0
 
         #region DATA_ACCESS
 
+        #region KÄYTTÄJÄT
         /// <summary>
         /// Try to find users with the matching email.
         /// </summary>
@@ -139,6 +140,48 @@ namespace ElainKlinikka2._0
             // Return the list (may have 0...N users)
             return foundUsers;
         }
+        #endregion
+
+        #region ELÄIN
+        public List<Eläin> FindEläinsWithName(string name)
+        {
+            if (openConnection == null)
+            {
+                inst.CreateConnection();
+            }
+
+            List<Eläin> foundEläin = new List<Eläin>();
+
+             // Create command
+             OleDbCommand myQuery = new OleDbCommand("SELECT * FROM Eläin WHERE Nimi ='" + name + "';", openConnection);
+
+            // Execute command
+            OleDbDataReader myReader = myQuery.ExecuteReader();
+
+            // Check if we got rows
+            if (myReader.HasRows)
+            {
+                // Loop through results
+                while (myReader.Read() == true)
+                {
+                    // Read data from each row
+                    int IDNumero = myReader.GetInt32(0);
+                    string EläinNimi = myReader.GetString(1);
+                    string EläimenKuvaus = myReader.GetString(2);
+                    
+                    // Create user
+                    Eläin e = new Eläin(IDNumero, EläinNimi, EläimenKuvaus );
+
+                    // Add to the list to be returned
+                    foundEläin.Add(e);
+                }
+            }
+
+            // Return the list (may have 0...N users)
+            return foundEläin;
+        }
+
+        #endregion
 
         #endregion
     }

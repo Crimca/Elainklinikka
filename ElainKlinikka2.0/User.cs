@@ -25,7 +25,7 @@ namespace ElainKlinikka2._0
 
         public string UserPassword { get; private set; } = "";
 
-        public string UserRooli { get; set; } = "";
+        public string UserRooli { get; private set; } = "";
 
 
 
