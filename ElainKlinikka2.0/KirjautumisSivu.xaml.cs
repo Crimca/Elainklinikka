@@ -59,8 +59,6 @@ namespace ElainKlinikka2._0
         public string EnteredUsername = "";
         private void kirjauduClick(object sender, RoutedEventArgs e)
         {
-            
-
             // Tällä informoidaan MainWindow:lle, että käyttäjä suoritti dialogin loppuun
             List<User> u = DatabaseHandler.Instance.FindUsersWithEmail(usernameBox.Text);
 
@@ -92,22 +90,6 @@ namespace ElainKlinikka2._0
                 // More than one user
                 MessageBox.Show("Found " + u.Count + " matching users.");
             }
-            /*
-
-            if (username.CompareTo(u[0].UserName) == 0 &&
-                   pw.CompareTo(u[0].UserPassword) == 0)
-            {
-                MessageBox.Show("Kirjautunut käyttäjä: " + username);
-            }
-            else
-            {
-                MessageBox.Show("Väärä tunnus tai salasana");
-            }*/
-
-           // this.DialogResult = true;
-
         }
     }
-
-
 }

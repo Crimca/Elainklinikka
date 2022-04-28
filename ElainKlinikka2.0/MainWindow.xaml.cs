@@ -80,16 +80,32 @@ namespace ElainKlinikka2._0
 
             if (kirjautunut == true)
             {
+                List<User> u = DatabaseHandler.Instance.FindUsersWithEmail(kirjautunutUsername);
+               
                 // Jos on, näytä "Kirjaudu ulos" painike ja disabloi "Kirjaudu" painike
                 kirjauduUlosButton.Visibility = Visibility.Visible;
                 avaaKirjButton.IsEnabled = false;
                 //Tabien näkyvyys
-                AsiakasHakuTab.Visibility = Visibility.Visible;
-                AsiakasLisääTab.Visibility = Visibility.Visible;
-                HakuTab.Visibility = Visibility.Visible;
-                AsiakasLisääTab.IsEnabled = true;
-                HakuTab.IsEnabled = true;
-                AsiakasHakuTab.IsEnabled = true;
+
+                if (u[0].UserRooli == "1")
+                {
+                    AsiakasHakuTab.Visibility = Visibility.Visible;
+                    AsiakasHakuTab.IsEnabled = true;
+                    AsiakasLisääTab.Visibility = Visibility.Visible;
+                    AsiakasLisääTab.IsEnabled = true;
+                    HakuTab.Visibility = Visibility.Visible;                   
+                    HakuTab.IsEnabled = true;                   
+                }
+
+                if(u[0].UserRooli == "2")
+                {
+                    AsiakasHakuTab.Visibility = Visibility.Visible;
+                    AsiakasHakuTab.IsEnabled = true;
+                    AsiakasLisääTab.Visibility = Visibility.Visible;                    
+                    AsiakasLisääTab.IsEnabled = true;
+                    HakuTab.Visibility = Visibility.Collapsed;
+                    HakuTab.IsEnabled = false;
+                }
             }
             else
             {
@@ -99,12 +115,11 @@ namespace ElainKlinikka2._0
                 avaaKirjButton.IsEnabled = true;
                 //Tabien näkyvyys
                 AsiakasHakuTab.Visibility = Visibility.Hidden;
-                AsiakasLisääTab.Visibility = Visibility.Hidden;
-                HakuTab.Visibility = Visibility.Hidden;
-                AsiakasLisääTab.IsEnabled = false;
-                HakuTab.IsEnabled = false;
                 AsiakasHakuTab.IsEnabled = false;
-
+                AsiakasLisääTab.Visibility = Visibility.Hidden;
+                AsiakasLisääTab.IsEnabled = false;
+                HakuTab.Visibility = Visibility.Hidden;                
+                HakuTab.IsEnabled = false;
             }
         }
 

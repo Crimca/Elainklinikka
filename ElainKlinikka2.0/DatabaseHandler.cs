@@ -127,8 +127,9 @@ namespace ElainKlinikka2._0
                     string userName = myReader.GetString(1);
                     string userEmail = myReader.GetString(2);
                     string passWord = myReader.GetString(3);
+                    string userRooli = myReader.GetString(4);
                     // Create user
-                    User u = new User(userId, userName, userEmail, passWord);
+                    User u = new User(userId, userName, userEmail, passWord, userRooli);
 
                     // Add to the list to be returned
                     foundUsers.Add(u);

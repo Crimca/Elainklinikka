@@ -16,7 +16,7 @@ namespace ElainKlinikka2._0
         /// <summary>
         /// Tietokannassa käyttäjällä on myös nimi.
         /// </summary>
-        public string Username { get; private set; } = "";
+        public string UserName { get; private set; } = "";
 
         /// <summary>
         /// Ja sähköpostiosoite.
@@ -25,19 +25,22 @@ namespace ElainKlinikka2._0
 
         public string UserPassword { get; private set; } = "";
 
+        public string UserRooli { get; set; } = "";
 
 
-        public User(int id, string name, string email, string password)
+
+        public User(int id, string name, string email, string password, string rooli)
         {
             Id = id;
-            Username = name;
+            UserName = name;
             UserEmail = email;
             UserPassword = password;
+            UserRooli = rooli;
         }
 
         public string MakeDescription()
         {
-            return Id + ": " + Username + ", " + UserEmail;
+            return Id + ": " + UserName + ", " + UserEmail;
         }
     }
 }
