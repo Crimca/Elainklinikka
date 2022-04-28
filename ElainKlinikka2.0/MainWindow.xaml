@@ -17,8 +17,8 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Asiakkaan lisäys" Height="20" VerticalAlignment="Bottom">
-                <Grid Background="White">
+            <TabItem x:Name="AsiakasLisääTab" Header="Asiakkaan lisäys" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
+                <Grid Background="White" IsEnabled="False">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="9*"/>
@@ -46,7 +46,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Haku" Height="20" VerticalAlignment="Bottom">
+            <TabItem x:Name="HakuTab" Header="Haku" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -78,7 +78,7 @@
                     </ListView>
                 </Grid>
             </TabItem>
-            <TabItem Header="Asiakas haku" Height="20" VerticalAlignment="Bottom">
+            <TabItem x:Name="AsiakasHakuTab" Header="Asiakas haku" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition/>

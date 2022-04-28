@@ -83,6 +83,13 @@ namespace ElainKlinikka2._0
                 // Jos on, näytä "Kirjaudu ulos" painike ja disabloi "Kirjaudu" painike
                 kirjauduUlosButton.Visibility = Visibility.Visible;
                 avaaKirjButton.IsEnabled = false;
+                //Tabien näkyvyys
+                AsiakasHakuTab.Visibility = Visibility.Visible;
+                AsiakasLisääTab.Visibility = Visibility.Visible;
+                HakuTab.Visibility = Visibility.Visible;
+                AsiakasLisääTab.IsEnabled = true;
+                HakuTab.IsEnabled = true;
+                AsiakasHakuTab.IsEnabled = true;
             }
             else
             {
@@ -90,6 +97,14 @@ namespace ElainKlinikka2._0
                 kirjauduUlosButton.Visibility = Visibility.Hidden;
                 // Enabloi "Kirjaudu" painike
                 avaaKirjButton.IsEnabled = true;
+                //Tabien näkyvyys
+                AsiakasHakuTab.Visibility = Visibility.Hidden;
+                AsiakasLisääTab.Visibility = Visibility.Hidden;
+                HakuTab.Visibility = Visibility.Hidden;
+                AsiakasLisääTab.IsEnabled = false;
+                HakuTab.IsEnabled = false;
+                AsiakasHakuTab.IsEnabled = false;
+
             }
         }
 
