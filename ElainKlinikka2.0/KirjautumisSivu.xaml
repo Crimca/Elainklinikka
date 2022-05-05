@@ -9,9 +9,12 @@
       Title="Kirjautumis sivu">
 
     <Grid>
-        <Button x:Name="kirjauduButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top" Width="75" Click="kirjauduClick" IsDefault="True" IsEnabled="False" TabIndex="3"/>
-        <Button x:Name="peruutaButton" Content="Peruuta" HorizontalAlignment="Left" Margin="333,187,0,0" VerticalAlignment="Top" Width="75" Click="peruutaClick" TabIndex="4" IsCancel="True"/>
-        <TextBox x:Name="usernameBox" HorizontalAlignment="Center" Height="23" Margin="0,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="usernameBox_TextChanged" TabIndex="1"/>
+        <Button x:Name="kirjauduButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top" Width="75" 
+                Click="kirjauduClick" IsDefault="True" IsEnabled="False" TabIndex="3"/>
+        <Button x:Name="peruutaButton" Content="Peruuta" HorizontalAlignment="Left" Margin="333,187,0,0" VerticalAlignment="Top" Width="75" 
+                Click="peruutaClick" TabIndex="4" IsCancel="True"/>
+        <TextBox x:Name="usernameBox" HorizontalAlignment="Center" Height="23" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
+                 TextChanged="usernameBox_TextChanged" TabIndex="1"/>
         <PasswordBox x:Name="salasanaBox" HorizontalAlignment="Center" Height="23" Margin="0,145,0,0" VerticalAlignment="Top" Width="120" PasswordChanged="salasanaBox_TextChanged" TabIndex="2"/>
 
     </Grid>

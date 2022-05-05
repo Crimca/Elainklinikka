@@ -10,51 +10,103 @@
         <TabControl x:Name="tabControl">
             <TabItem Header="Etusivu">
                 <Grid Background="#FFE5E5E5">
-
-                    <Button x:Name="avaaKirjButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="349,218,0,0" VerticalAlignment="Top" Width="75" Click="avaaKirjButtonClick"/>
-                    <Button x:Name="kirjauduUlosButton" Content="Kirjaudu ulos" Visibility="Hidden" HorizontalAlignment="Left" Margin="477,218,0,0" VerticalAlignment="Top" Width="75" Click="kirjauduUlosButton_Click"/>
-
+                    <Button x:Name="avaaKirjButton" Content="Kirjaudu" 
+                            HorizontalAlignment="Left" Margin="349,218,0,0" 
+                            VerticalAlignment="Top" Width="75" Click="avaaKirjButtonClick"/>
+                    
+                    <Button x:Name="kirjauduUlosButton" Content="Kirjaudu ulos"
+                            Visibility="Hidden" HorizontalAlignment="Left"
+                            Margin="477,218,0,0" VerticalAlignment="Top" Width="75"
+                            Click="kirjauduUlosButton_Click"/>
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="AsiakasLisääTab" Header="Asiakkaan lisäys" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
+            <TabItem x:Name="AsiakasLisääTab" Header="Asiakkaan lisäys" Height="20" 
+                     VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
                 <Grid Background="White" IsEnabled="False">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="9*"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" Background="#33FFBD">
-                        <Button x:Name="haeButtonAsiakas" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Päivitä" Margin="10,0,0,0" Click="haeButton_Click"></Button>
-                        <Button x:Name="tyhjääButtonAsiakas" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
-                    </StackPanel>
-                    <Label Content="Etunimi:" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
-                    <Label Content="Sukunimi:" HorizontalAlignment="Left" Margin="10,63,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
-                    <Label Content="Osoite:" HorizontalAlignment="Left" Margin="10,115,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
-                    <Label Content="Paikkakunta:" HorizontalAlignment="Left" Margin="10,163,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
-                    <Label Content="Sähköposti:" HorizontalAlignment="Left" Margin="10,213,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
-                    <Label Content="Puhelin:" HorizontalAlignment="Left" Margin="10,261,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="Cambria"/>
                     
-                    <TextBox x:Name="textbox_AsiakasNimi" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,14,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
-                    <TextBox x:Name="textbox_AsiakasSukunimi" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,67,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
-                    <TextBox x:Name="textbox_AsiakasOsoite" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,119,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
-                    <TextBox x:Name="textbox_AsiakasPaikkakunta" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,167,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
-                    <TextBox x:Name="textbox_AsiakasEmail" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,217,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
-                    <TextBox x:Name="textbox_AsiakasPuhnro" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="136,265,496,0" TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    <StackPanel Orientation="Horizontal" Background="#33FFBD">
+                        <Button x:Name="haeButtonAsiakas" IsEnabled ="False" 
+                                Width="100" VerticalAlignment="Center" Content="Päivitä" 
+                                Margin="10,0,0,0" Click="haeButton_Click">                            
+                        </Button>
+                        
+                        <Button x:Name="tyhjääButtonAsiakas" IsEnabled ="False" 
+                                Width="100" VerticalAlignment="Center" Content="Tyhjää" 
+                                Margin="10,0,0,0" Click="tyhjääButton_Click">                            
+                        </Button>
+                    </StackPanel>
+                    
+                    <Label Content="Etunimi:" HorizontalAlignment="Left" 
+                           Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                           FontSize="20" FontFamily="Cambria"/>
+                    
+                    <Label Content="Sukunimi:" HorizontalAlignment="Left" 
+                           Margin="10,63,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                           FontSize="20" FontFamily="Cambria"/>
+                    
+                    <Label Content="Osoite:" HorizontalAlignment="Left" 
+                           Margin="10,115,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                           FontSize="20" FontFamily="Cambria"/>
+                    
+                    <Label Content="Paikkakunta:" HorizontalAlignment="Left" 
+                           Margin="10,163,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                           FontSize="20" FontFamily="Cambria"/>
+                    
+                    <Label Content="Sähköposti:" HorizontalAlignment="Left" 
+                           Margin="10,213,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                           FontSize="20" FontFamily="Cambria"/>
+                    
+                    <Label Content="Puhelin:" HorizontalAlignment="Left" 
+                           Margin="10,261,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                           FontSize="20" FontFamily="Cambria"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasNimi" TextWrapping="Wrap" Text="" 
+                             VerticalAlignment="Top" Margin="136,14,496,0" 
+                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasSukunimi" TextWrapping="Wrap" 
+                             Text="" VerticalAlignment="Top" Margin="136,67,496,0" 
+                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasOsoite" TextWrapping="Wrap" 
+                             Text="" VerticalAlignment="Top" Margin="136,119,496,0" 
+                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasPaikkakunta" TextWrapping="Wrap" 
+                             Text="" VerticalAlignment="Top" Margin="136,167,496,0" 
+                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasEmail" TextWrapping="Wrap" 
+                             Text="" VerticalAlignment="Top" Margin="136,217,496,0" 
+                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                    
+                    <TextBox x:Name="textbox_AsiakasPuhnro" TextWrapping="Wrap" 
+                             Text="" VerticalAlignment="Top" Margin="136,265,496,0" 
+                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="HakuTab" Header="Haku" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
                 <Grid Background="White">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="9*"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    
                     <StackPanel Orientation="Horizontal" Background="#a8328b">
                         <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
                         <ComboBox x:Name="tyyppiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -62,49 +114,92 @@
                         <Button x:Name="haeButton" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Hae" Margin="10,0,0,0" Click="haeButton_Click"></Button>
                         <Button x:Name="tyhjääButton" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
                     </StackPanel>
+                    
                     <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn x:Name="id" Header="ID" Width="50" DisplayMemberBinding="{Binding IdNumero}"></GridViewColumn>
-                                <GridViewColumn x:Name="nimi" Header="Nimi" Width="150" DisplayMemberBinding="{Binding TeoksenNimi}"></GridViewColumn>
-                                <GridViewColumn x:Name="kuvaus" Header="Kuvaus" Width="150" DisplayMemberBinding="{Binding TeoksenKuvaus}"></GridViewColumn>
-                                <GridViewColumn x:Name="lainaaika" Header="Laina-aika" Width="150" DisplayMemberBinding="{Binding Laina_aika}"></GridViewColumn>
-                                <GridViewColumn x:Name="sivumäärä" Header="Sivumäärä" Width="150" DisplayMemberBinding="{Binding Sivumäärä}"></GridViewColumn>
-                                <GridViewColumn x:Name="ikäraja" Header="Ikäraja" Width="150" DisplayMemberBinding="{Binding Ikäraja}"></GridViewColumn>
-                                <GridViewColumn x:Name="kesto" Header="Kesto" Width="150" DisplayMemberBinding="{Binding Kesto_min}"></GridViewColumn>
-                                <GridViewColumn x:Name="onkoKadonnut" Header="Kadonnut?" Width="150" DisplayMemberBinding="{Binding Kadonnut}"></GridViewColumn>
+                                <GridViewColumn x:Name="id" Header="ID" Width="50" 
+                                                DisplayMemberBinding="{Binding IDNumero}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn x:Name="nimi" Header="Nimi" Width="150" 
+                                                DisplayMemberBinding="{Binding EläimenNimi}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn x:Name="kuvaus" Header="Kuvaus" Width="150" 
+                                                DisplayMemberBinding="{Binding EläimenKuvaus}">                                    
+                                </GridViewColumn>                               
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="AsiakasHakuTab" Header="Asiakas haku" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
+            
+            <TabItem x:Name="AsiakasHakuTab" Header="Asiakas haku" Height="20" 
+                     VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="9*"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    
                     <StackPanel Orientation="Horizontal" Background="#3293a8">
-                        <TextBox x:Name="textBoxTyöntekijä" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
-                        <ComboBox x:Name="IdBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        <ComboBox x:Name="sähköpostiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        <Button x:Name="haeButtonTyöntekijä" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Hae" Margin="10,0,0,0" Click="haeButton_Click"></Button>
-                        <Button x:Name="tyhjääButtonTyöntekijä" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
+                        <TextBox x:Name="textBoxTyöntekijä" TextWrapping="Wrap" Text="" 
+                                 Width="120" VerticalAlignment="Center" Margin="10,0,0,0" 
+                                 TextChanged="textBox_TextChanged"/>
+                        <ComboBox x:Name="IdBox" Width="120" VerticalAlignment="Center" 
+                                  Margin="10,0,0,0"/>
+                        <ComboBox x:Name="sähköpostiBox" Width="120" 
+                                  VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <Button x:Name="haeButtonTyöntekijä" IsEnabled ="False" 
+                                Width="100" VerticalAlignment="Center" Content="Hae" 
+                                Margin="10,0,0,0" Click="haeButton_Click">                            
+                        </Button>
+                        
+                        <Button x:Name="tyhjääButtonTyöntekijä" IsEnabled ="False" 
+                                Width="100" VerticalAlignment="Center" Content="Tyhjää" 
+                                Margin="10,0,0,0" Click="tyhjääButton_Click">                            
+                        </Button>
                     </StackPanel>
+                    
                     <ListView x:Name="dataGridTyöntekijä" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding IdNumero}"></GridViewColumn>
-                                <GridViewColumn Header="Nimi" Width="150" DisplayMemberBinding="{Binding TeoksenNimi}"></GridViewColumn>
-                                <GridViewColumn Header="Sukunimi" Width="150" DisplayMemberBinding="{Binding TeoksenKuvaus}"></GridViewColumn>
-                                <GridViewColumn Header="Osoite" Width="150" DisplayMemberBinding="{Binding Laina_aika}"></GridViewColumn>
-                                <GridViewColumn Header="Paikkakunta" Width="150" DisplayMemberBinding="{Binding Sivumäärä}"></GridViewColumn>
-                                <GridViewColumn Header="Sähköposti" Width="150" DisplayMemberBinding="{Binding Ikäraja}"></GridViewColumn>
-                                <GridViewColumn Header="Lainat" Width="150" DisplayMemberBinding="{Binding Kesto_min}"></GridViewColumn>
-                                <GridViewColumn Header="Maksut" Width="150" DisplayMemberBinding="{Binding Kadonnut}"></GridViewColumn>
+                                <GridViewColumn Header="ID" Width="50" 
+                                                DisplayMemberBinding="{Binding IdNumero}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Nimi" Width="150" 
+                                                DisplayMemberBinding="{Binding TeoksenNimi}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Sukunimi" Width="150" 
+                                                DisplayMemberBinding="{Binding TeoksenKuvaus}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Osoite" Width="150" 
+                                                DisplayMemberBinding="{Binding Laina_aika}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Paikkakunta" Width="150" 
+                                                DisplayMemberBinding="{Binding Sivumäärä}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Sähköposti" Width="150" 
+                                                DisplayMemberBinding="{Binding Ikäraja}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Lainat" Width="150"
+                                                DisplayMemberBinding="{Binding Kesto_min}">                                    
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Header="Maksut" Width="150" 
+                                                DisplayMemberBinding="{Binding Kadonnut}">                                    
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
