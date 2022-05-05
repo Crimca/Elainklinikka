@@ -15,7 +15,7 @@ namespace ElainKlinikka2._0
         /// <summary>
         /// The database path to load from.
         /// </summary>
-        private static string DB_PATH = @"U:\Ohjelmoinnin perusteet II\Eläinklinikka\ElainKlinikka2.0\lib.accdb";
+        private static string DB_PATH = @"..\..\lib.accdb";
 
         /// <summary>
         /// The instance that has been created in the application.
