@@ -243,5 +243,9 @@ namespace ElainKlinikka2._0
             }
         }
 
-   }
+        private void BTN_AsiakasSV_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }

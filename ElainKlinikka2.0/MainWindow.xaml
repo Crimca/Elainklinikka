@@ -21,8 +21,9 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="AsiakasLisääTab" Header="Asiakkaan lisäys" Height="20" 
-                     VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
+            <TabItem x:Name="AsiakasLisääTab" Header="Asiakkaan lisäys" 
+                     Height="20" VerticalAlignment="Bottom" IsEnabled="False" 
+                     Visibility="Visible">
                 <Grid Background="White" IsEnabled="False">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -71,31 +72,44 @@
                     
                     <TextBox x:Name="textbox_AsiakasNimi" TextWrapping="Wrap" Text="" 
                              VerticalAlignment="Top" Margin="136,14,496,0" 
-                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                             TextChanged="textBox_TextChanged" Grid.Row="1" 
+                             FontSize="20"/>
                     
                     <TextBox x:Name="textbox_AsiakasSukunimi" TextWrapping="Wrap" 
                              Text="" VerticalAlignment="Top" Margin="136,67,496,0" 
-                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                             TextChanged="textBox_TextChanged" Grid.Row="1" 
+                             FontSize="20"/>
                     
                     <TextBox x:Name="textbox_AsiakasOsoite" TextWrapping="Wrap" 
                              Text="" VerticalAlignment="Top" Margin="136,119,496,0" 
-                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                             TextChanged="textBox_TextChanged" Grid.Row="1" 
+                             FontSize="20"/>
                     
                     <TextBox x:Name="textbox_AsiakasPaikkakunta" TextWrapping="Wrap" 
                              Text="" VerticalAlignment="Top" Margin="136,167,496,0" 
-                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                             TextChanged="textBox_TextChanged" Grid.Row="1" 
+                             FontSize="20"/>
                     
                     <TextBox x:Name="textbox_AsiakasEmail" TextWrapping="Wrap" 
                              Text="" VerticalAlignment="Top" Margin="136,217,496,0" 
-                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                             TextChanged="textBox_TextChanged" Grid.Row="1" 
+                             FontSize="20"/>
                     
                     <TextBox x:Name="textbox_AsiakasPuhnro" TextWrapping="Wrap" 
                              Text="" VerticalAlignment="Top" Margin="136,265,496,0" 
-                             TextChanged="textBox_TextChanged" Grid.Row="1" FontSize="20"/>
+                             TextChanged="textBox_TextChanged" 
+                             Grid.Row="1" FontSize="20"/>
+                    
+                    <Button x:Name="BTN_AsiakasSV" Content="Tallenna" 
+                            HorizontalAlignment="Left" Margin="151,319,0,0" 
+                            Grid.Row="1" VerticalAlignment="Top" Width="75" 
+                            Click="BTN_AsiakasSV_Click"/>
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="HakuTab" Header="Haku" Height="20" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Hidden">
+            <TabItem x:Name="HakuTab" Header="Haku" Height="20" 
+                     VerticalAlignment="Bottom" IsEnabled="False" 
+                     Visibility="Hidden">
                 <Grid Background="White">
                     
                     <Grid.RowDefinitions>
@@ -107,12 +121,33 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     
-                    <StackPanel Orientation="Horizontal" Background="#a8328b">
-                        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="textBox_TextChanged"/>
-                        <ComboBox x:Name="tyyppiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        <ComboBox x:Name="lajiBox" Width="120" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                        <Button x:Name="haeButton" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Hae" Margin="10,0,0,0" Click="haeButton_Click"></Button>
-                        <Button x:Name="tyhjääButton" IsEnabled ="False" Width="100" VerticalAlignment="Center" Content="Tyhjää" Margin="10,0,0,0" Click="tyhjääButton_Click"></Button>
+                    <StackPanel Orientation="Horizontal" 
+                                Background="#a8328b">
+                        <TextBox x:Name="textBox" TextWrapping="Wrap" 
+                                 Text="" Width="120" 
+                                 VerticalAlignment="Center" 
+                                 Margin="10,0,0,0" 
+                                 TextChanged="textBox_TextChanged"/>
+                        
+                        <ComboBox x:Name="tyyppiBox" Width="120" 
+                                  VerticalAlignment="Center" 
+                                  Margin="10,0,0,0"/>
+                        
+                        <ComboBox x:Name="lajiBox" Width="120" 
+                                  VerticalAlignment="Center" 
+                                  Margin="10,0,0,0"/>
+                        
+                        <Button x:Name="haeButton" IsEnabled ="False" 
+                                Width="100" VerticalAlignment="Center" 
+                                Content="Hae" Margin="10,0,0,0" 
+                                Click="haeButton_Click">                            
+                        </Button>
+                        
+                        <Button x:Name="tyhjääButton" IsEnabled ="False" 
+                                Width="100" VerticalAlignment="Center" 
+                                Content="Tyhjää" Margin="10,0,0,0" 
+                                Click="tyhjääButton_Click">                            
+                        </Button>
                     </StackPanel>
                     
                     <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
