@@ -238,6 +238,7 @@ namespace ElainKlinikka2._0
                     // Lisätään lopuksi meidän custom tab item näkymään
                     tabControl.Items.Add(t);
                     tabControl.SelectedItem = t;
+
                 }
 
             }

@@ -14,7 +14,7 @@ namespace ElainKlinikka2._0
         
 
         //Property, joka palauttaa id-numeron muuttujasta _ID
-        public int IDNumero
+        public int EläinID
         {
             get { return _Id; }
         }

@@ -146,11 +146,6 @@ namespace ElainKlinikka2._0
                 }
             }
 
-            if (openConnection != null)
-            {
-                inst.CloseConnection();
-            }
-
             // Return the list (may have 0...N users)
             return foundUsers;
 
@@ -192,10 +187,6 @@ namespace ElainKlinikka2._0
                 }
             }
 
-            if (openConnection != null)
-            {
-                inst.CloseConnection();
-            }
 
             // Return the list (may have 0...N users)
             return foundEläin;
@@ -204,7 +195,7 @@ namespace ElainKlinikka2._0
         #endregion
 
         #region LISÄÄ_TIETOJA
-        public void AddAsiakas()
+       /* public void AddAsiakas()
         {
             try
             {
@@ -220,10 +211,7 @@ namespace ElainKlinikka2._0
                 command.ExecuteNonQuery();
 
 
-                if (openConnection != null)
-                {
-                    inst.CloseConnection();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -233,7 +221,7 @@ namespace ElainKlinikka2._0
 
 
         }
-
+       */
 
         #endregion
 

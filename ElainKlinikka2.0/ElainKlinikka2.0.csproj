@@ -76,8 +76,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Asiakas.cs" />
     <Compile Include="DatabaseHandler.cs" />
     <Compile Include="Käynti.cs" />
+    <Compile Include="System\Windows\TabPage.cs" />
     <Compile Include="User.cs" />
     <Compile Include="CustomTabContent.xaml.cs">
       <DependentUpon>CustomTabContent.xaml</DependentUpon>
