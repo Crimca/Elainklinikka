@@ -4,18 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ElainKlinikka2._0"
-      mc:Ignorable="d" 
-      d:DesignHeight="351.887" d:DesignWidth="618.868"
-      Title="Kirjautumis sivu">
+      mc:Ignorable="d"
+      Title="Kirjautumis sivu" Height="242" Width="556" WindowStyle="None" Foreground="White" Background="#FFF0F3F4" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Grid>
-        <Button x:Name="kirjauduButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="213,187,0,0" VerticalAlignment="Top" Width="75" 
-                Click="kirjauduClick" IsDefault="True" IsEnabled="False" TabIndex="3"/>
-        <Button x:Name="peruutaButton" Content="Peruuta" HorizontalAlignment="Left" Margin="333,187,0,0" VerticalAlignment="Top" Width="75" 
-                Click="peruutaClick" TabIndex="4" IsCancel="True"/>
-        <TextBox x:Name="usernameBox" HorizontalAlignment="Center" Height="23" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" 
-                 TextChanged="usernameBox_TextChanged" TabIndex="1"/>
-        <PasswordBox x:Name="salasanaBox" HorizontalAlignment="Center" Height="23" Margin="0,145,0,0" VerticalAlignment="Top" Width="120" PasswordChanged="salasanaBox_TextChanged" TabIndex="2"/>
+        <Button x:Name="kirjauduButton" Content="Kirjaudu" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Width="224" 
+                Click="kirjauduClick" IsDefault="True" IsEnabled="False" TabIndex="3" FontSize="36"/>
+        <Button x:Name="peruutaButton" Content="Peruuta" HorizontalAlignment="Left" Margin="316,174,0,0" VerticalAlignment="Top" Width="224" 
+                Click="peruutaClick" TabIndex="4" IsCancel="True" FontSize="36"/>
+        <TextBox x:Name="usernameBox" Height="60" Margin="176,36,16,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="usernameBox_TextChanged" TabIndex="1" FontSize="36"/>
+        <PasswordBox x:Name="salasanaBox" HorizontalAlignment="Left" Height="60" Margin="176,101,0,0" VerticalAlignment="Top" Width="364" PasswordChanged="salasanaBox_TextChanged" TabIndex="2" FontSize="36"/>
+        <Label Content="Email&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Height="60" FontSize="36" Width="161"/>
+        <Label Content="Salasana&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Height="60" FontSize="36" Width="161"/>
+        <Rectangle HorizontalAlignment="Center" Height="31" Stroke="#FF2F93BF" VerticalAlignment="Top" Width="884" StrokeThickness="10" Fill="#FF2F93BF"/>
+        <Label Content="Kirjaudu" HorizontalAlignment="Left" Margin="0,-6,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="34" Background="Transparent" Foreground="White" FontSize="22"/>
 
     </Grid>
 </Window>

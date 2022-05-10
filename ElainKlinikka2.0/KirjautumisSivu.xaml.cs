@@ -54,7 +54,11 @@ namespace ElainKlinikka2._0
         private void peruutaClick(object sender, RoutedEventArgs e)
         {
             // Tämä kertoo, että dialogin suoritus peruuntui
-            this.DialogResult = false;
+            //this.DialogResult = false;
+
+            //Sulkee sovelluksen kun painaa peruuta
+            System.Windows.Application.Current.Shutdown();
+
         }
         public string EnteredUsername = "";
         private void kirjauduClick(object sender, RoutedEventArgs e)
@@ -73,7 +77,14 @@ namespace ElainKlinikka2._0
                     EnteredUsername = usernameBox.Text;
 
                     // Päivitetään käyttöliittymä, koska käyttäjä on kirjautunut
-                    this.DialogResult = true;
+                    //this.DialogResult = true;
+
+                    //avaa pääikkunan, kun kirjaudutaan sisään
+                    var window = new MainWindow();
+                    window.Owner = this;
+                    window.Show();
+                    this.Hide();
+
                 }
                 else
                 {
