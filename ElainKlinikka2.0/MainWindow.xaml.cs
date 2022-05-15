@@ -81,7 +81,7 @@ namespace ElainKlinikka2._0
             if (kirjautunut == true)
             {
                 List<User> u = DatabaseHandler.Instance.FindUsersWithEmail(kirjautunutUsername);
-               
+
                 // Jos on, näytä "Kirjaudu ulos" painike ja disabloi "Kirjaudu" painike
                 kirjauduUlosButton.Visibility = Visibility.Visible;
                 avaaKirjButton.IsEnabled = false;
@@ -93,15 +93,15 @@ namespace ElainKlinikka2._0
                     AsiakasHakuTab.IsEnabled = true;
                     AsiakasLisääTab.Visibility = Visibility.Visible;
                     AsiakasLisääTab.IsEnabled = true;
-                    HakuTab.Visibility = Visibility.Visible;                   
-                    HakuTab.IsEnabled = true;                   
+                    HakuTab.Visibility = Visibility.Visible;
+                    HakuTab.IsEnabled = true;
                 }
 
-                if(u[0].UserRooli == "2")
+                if (u[0].UserRooli == "2")
                 {
                     AsiakasHakuTab.Visibility = Visibility.Visible;
                     AsiakasHakuTab.IsEnabled = true;
-                    AsiakasLisääTab.Visibility = Visibility.Visible;                    
+                    AsiakasLisääTab.Visibility = Visibility.Visible;
                     AsiakasLisääTab.IsEnabled = true;
                     HakuTab.Visibility = Visibility.Collapsed;
                     HakuTab.IsEnabled = false;
@@ -116,9 +116,9 @@ namespace ElainKlinikka2._0
                 //Tabien näkyvyys
                 AsiakasHakuTab.Visibility = Visibility.Hidden;
                 AsiakasHakuTab.IsEnabled = false;
-                AsiakasLisääTab.Visibility = Visibility.Hidden;
-                AsiakasLisääTab.IsEnabled = false;
-                HakuTab.Visibility = Visibility.Hidden;                
+                AsiakasLisääTab.Visibility = Visibility.Collapsed;
+                AsiakasLisääTab.IsEnabled = true;
+                HakuTab.Visibility = Visibility.Hidden;
                 HakuTab.IsEnabled = false;
             }
         }
@@ -145,7 +145,7 @@ namespace ElainKlinikka2._0
             // valitun kirjaston teokset listaa sen sisällä
             //ListSource kertoo itemeiden lähteen ja jokainen näytetään rivinä ListViewn sisällä
             dataGrid.ItemsSource = valittuKlinikka.Eläimet;
-        } 
+        }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -201,7 +201,7 @@ namespace ElainKlinikka2._0
                     {
                         välilehtiJoOlemassa = t;
                         break;
-                    } 
+                    }
                 }
 
                 if (välilehtiJoOlemassa != null)
@@ -244,8 +244,14 @@ namespace ElainKlinikka2._0
             }
         }
 
-        private void BTN_AsiakasSV_Click(object sender, RoutedEventArgs e)
+        
+        
+        public void BTN_AsiakasSV_Click(object sender, RoutedEventArgs e)
         {
+            
+            DatabaseHandler.Instance.AddAsiakas(textbox_AID.Text, textbox_AsiakasNimi.Text, textbox_AsiakasSukunimi.Text);
+
+            
 
         }
     }

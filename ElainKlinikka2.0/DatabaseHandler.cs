@@ -195,7 +195,7 @@ namespace ElainKlinikka2._0
         #endregion
 
         #region LISÄÄ_TIETOJA
-       /* public void AddAsiakas()
+        public void AddAsiakas(string id, string etunimi, string sukunimi)
         {
             try
             {
@@ -204,24 +204,20 @@ namespace ElainKlinikka2._0
                     inst.CreateConnection();
                 }
 
-                OleDbCommand command = new OleDbCommand();
-
-                command.CommandText = "insert into ";
+                OleDbCommand command = new OleDbCommand("insert into Omistaja (OmistajaID,Etunimi,Sukunimi) values('" + id + "' , '" + etunimi + "','" + sukunimi + "') ;", openConnection);
 
                 command.ExecuteNonQuery();
 
-
-                
             }
             catch (Exception ex)
             {
-                
+
                 MessageBox.Show("Error " + ex);
             }
 
 
         }
-       */
+
 
         #endregion
 
