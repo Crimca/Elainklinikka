@@ -208,6 +208,7 @@ namespace ElainKlinikka2._0
 
                 command.ExecuteNonQuery();
 
+                MessageBox.Show("Tiedot tallennettu onnistuneesti");
             }
             catch (Exception ex)
             {
