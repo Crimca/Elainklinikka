@@ -52,27 +52,11 @@ namespace ElainKlinikka2._0
                 kirjautunutUsername = d.EnteredUsername;
 
                 PäivitäKäyttöliittymä();
-                // Demotarkistus, kovakoodatut arvot
-                // Nämä haettaisiin tietokannasta tmv
-                /*if (username.CompareTo("Hellu") == 0 &&
-                    pw.CompareTo("qwerty") == 0)
-                {
-                    MessageBox.Show("Kirjautunut käyttäjä: " + username);
-
-                    // Tallennetaan kirjautuneen käyttäjän username muuttujaan, tilatietona
-                    kirjautunutUsername = username;
-
-                    // Päivitetään käyttöliittymä, koska käyttäjä on kirjautunut
-                    PäivitäKäyttöliittymä();
-                }
-                else
-                {
-                    MessageBox.Show("Väärä tunnus tai salasana");
-                }*/
             }
 
         }
 
+        #region KÄYTTÖLIITTYMÄ
         private void PäivitäKäyttöliittymä()
         {
             // Tarkistetaan, onko käyttäjä kirjautuneena (onko kirjautunutUsername muuttujassa joku arvo)
@@ -122,6 +106,8 @@ namespace ElainKlinikka2._0
                 AsiakasLisääTab.IsEnabled = true;
                 HakuTab.Visibility = Visibility.Hidden;
                 HakuTab.IsEnabled = false;
+                EläinLisääTab.Visibility = Visibility.Collapsed;
+                EläinLisääTab.IsEnabled = true;
             }
         }
 
@@ -133,6 +119,8 @@ namespace ElainKlinikka2._0
             // Päivitä käyttöliittymä, koska käyttäjä kirjautui ulos
             PäivitäKäyttöliittymä();
         }
+
+        #endregion
 
         private Klinikka valittuKlinikka;
         public MainWindow()
@@ -149,6 +137,7 @@ namespace ElainKlinikka2._0
             dataGrid.ItemsSource = valittuKlinikka.Eläimet;
         }
 
+        #region HAKUTAB
         private void nimiBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string hakuTeksti = nimiBox.Text;
@@ -183,7 +172,8 @@ namespace ElainKlinikka2._0
         {
             nimiBox.Text = "";
             //TODO tyhjää myös muut hakuvalinnat
-
+            tyyppiBox.SelectedIndex = -1;
+            lajiBox.SelectedIndex = -1;
             //Palautetaan alkuperäinen lista
             dataGrid.ItemsSource = valittuKlinikka.Eläimet;
         }
@@ -245,16 +235,36 @@ namespace ElainKlinikka2._0
 
             }
         }
+        #endregion
 
-        
-        
-        public void BTN_AsiakasSV_Click(object sender, RoutedEventArgs e)
+        #region ASIAKASTAB
+        private void tyhjääButtonAsiakas_Click(object sender, RoutedEventArgs e)
         {
-            
-            DatabaseHandler.Instance.AddAsiakas(textbox_AID.Text, textbox_AsiakasNimi.Text, textbox_AsiakasSukunimi.Text);
+            textbox_AsiakasOsoite.Text = "";
+            textbox_AID.Text = "";
+            textbox_AsiakasEmail.Text = "";
+            textbox_AsiakasNimi.Text = "";
+            textbox_AsiakasPaikkakunta.Text = "";
+            textbox_AsiakasOsoite.Text = "";
+            textbox_AsiakasPuhnro.Text = "";
+            textbox_AsiakasSukunimi.Text = "";
+        }
 
-            
+        private void BTN_AsiakasSV_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseHandler.Instance.AddAsiakas(textbox_AID.Text, textbox_AsiakasNimi.Text, textbox_AsiakasSukunimi.Text);         
+        }
+        #endregion
 
+        #region ELÄINTAB
+        private void tyhjääButtonPotilas_Click(object sender, RoutedEventArgs e)
+        {
+            textBox_EläinIkä.Text = "";
+            textBox_EläinNimi.Text = "";
+            textBox_EläinPaino.Text = "";
+            textBox_Laji.Text = "";
+            textBox_OmistajaHetu.Text = "";
+            textBox_Rotu.Text = "";
         }
 
         private void BTN_EläinSV_Click(object sender, RoutedEventArgs e)
@@ -263,5 +273,6 @@ namespace ElainKlinikka2._0
 
             DatabaseHandler.Instance.AddEläin(textBox_EläinNimi.Text, textBox_Laji.Text, textBox_Rotu.Text, x);
         }
+        #endregion
     }
 }
