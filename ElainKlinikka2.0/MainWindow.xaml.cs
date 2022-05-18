@@ -147,9 +147,9 @@ namespace ElainKlinikka2._0
             dataGrid.ItemsSource = valittuKlinikka.Eläimet;
         }
 
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void nimiBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string hakuTeksti = textBox.Text;
+            string hakuTeksti = nimiBox.Text;
             bool onTyhjä = string.IsNullOrWhiteSpace(hakuTeksti);
 
             if (onTyhjä == false)
@@ -166,7 +166,7 @@ namespace ElainKlinikka2._0
 
         private void haeButton_Click(object sender, RoutedEventArgs e)
         {
-            string hakutermi = textBox.Text.Trim();
+            string hakutermi = nimiBox.Text.Trim();
 
             List<Eläin> osumat = valittuKlinikka.Eläimet.FindAll(
                 x => x.EläimenNimi.Contains(hakutermi) == true ||
@@ -179,7 +179,7 @@ namespace ElainKlinikka2._0
 
         private void tyhjääButton_Click(object sender, RoutedEventArgs e)
         {
-            textBox.Text = "";
+            nimiBox.Text = "";
             //TODO tyhjää myös muut hakuvalinnat
 
             //Palautetaan alkuperäinen lista

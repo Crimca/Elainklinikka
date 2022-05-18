@@ -171,8 +171,17 @@
                             HorizontalAlignment="Left" Margin="151,319,0,0" 
                             Grid.Row="1" VerticalAlignment="Top" Width="75" 
                             Click="BTN_AsiakasSV_Click"/>
-                    <TextBox x:Name="textbox_AID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="268,79,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <Label Content="ID" Grid.Column="1" HorizontalAlignment="Left" Margin="192,79,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                    <TextBox x:Name="textbox_AID" TextWrapping="Wrap"
+                             HorizontalAlignment="Left" 
+                             Margin="319,14,0,0" Grid.Row="1" 
+                             Text="" VerticalAlignment="Top" FontSize="20" 
+                             Grid.Column="1" Width="154" Height="29"/>
+
+                    <Label Content="Asiakkaan henkilötunnus" Grid.Column="1" 
+                           HorizontalAlignment="Left" Margin="62,12,0,0" Grid.Row="1" 
+                           VerticalAlignment="Top"  FontSize="20" FontFamily="Cambria"
+                           RenderTransformOrigin="-0.229,0.81"/>
                 </Grid>
             </TabItem>
 
@@ -187,16 +196,17 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="28*"/>
+                        <ColumnDefinition Width="103*"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Horizontal" 
-                                Background="#a8328b">
-                        <TextBox x:Name="textBox" TextWrapping="Wrap" 
+                                Background="#a8328b" Grid.ColumnSpan="2">
+                        <TextBox x:Name="nimiBox" TextWrapping="Wrap" 
                                  Text="" Width="120" 
                                  VerticalAlignment="Center" 
                                  Margin="10,0,0,0" 
-                                 TextChanged="textBox_TextChanged"/>
+                                 TextChanged="nimiBox_TextChanged"/>
 
                         <ComboBox x:Name="tyyppiBox" Width="120" 
                                   VerticalAlignment="Center" 
@@ -219,7 +229,7 @@
                         </Button>
                     </StackPanel>
 
-                    <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick">
+                    <ListView x:Name="dataGrid" Grid.Row="1" MouseDoubleClick="dataGrid_MouseDoubleClick" Grid.ColumnSpan="2">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn x:Name="id" Header="ID" Width="50" 
@@ -236,6 +246,84 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="EläinLisääTab" Header="Potilaan lisäys" 
+                Height="20" VerticalAlignment="Bottom" IsEnabled="False" 
+                Visibility="Visible" Margin="-2,0">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="247*"/>
+                        <ColumnDefinition Width="539*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Background="#33FFBD" Grid.ColumnSpan="2">
+                        <Button x:Name="haeButtonAsiakas1" IsEnabled ="False" 
+                            Width="100" VerticalAlignment="Center" Content="Päivitä" 
+                            Margin="10,0,0,0" Click="haeButton_Click"/>
+
+                        <Button x:Name="tyhjääButtonPotilas" IsEnabled ="False" 
+                            Width="100" VerticalAlignment="Center" Content="Tyhjää" 
+                            Margin="10,0,0,0" Click="tyhjääButtonPotilas_Click"/>
+                    </StackPanel>
+
+                    <Label Content="Nimi:" HorizontalAlignment="Left" 
+                        Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                        FontSize="20" FontFamily="Cambria"/>
+
+                    <Label Content="Omistajan Hetu:" HorizontalAlignment="Left" 
+                        Margin="10,63,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                        FontSize="20" FontFamily="Cambria"/>
+
+                    <Label Content="Laji:" HorizontalAlignment="Left" 
+                        Margin="10,115,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                        FontSize="20" FontFamily="Cambria"/>
+
+                    <Label Content="Rotu:" HorizontalAlignment="Left" 
+                        Margin="10,163,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                        FontSize="20" FontFamily="Cambria"/>
+
+                    <Label Content="Ikä:" HorizontalAlignment="Left" 
+                        Margin="10,213,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                        FontSize="20" FontFamily="Cambria"/>
+
+                    <Label Content="Paino:" HorizontalAlignment="Left" 
+                        Margin="10,261,0,0" Grid.Row="1" VerticalAlignment="Top" 
+                        FontSize="20" FontFamily="Cambria"/>
+
+                    <TextBox x:Name="textBox_EläinNimi" TextWrapping="Wrap" Text="" 
+                        VerticalAlignment="Top" Margin="165,14,467,0" Grid.Row="1" 
+                        FontSize="20" Grid.ColumnSpan="2"/>
+
+                    <TextBox x:Name="textBox_OmistajaNimi" TextWrapping="Wrap" 
+                        Text="" VerticalAlignment="Top" Margin="165,67,467,0" Grid.Row="1" 
+                        FontSize="20" Grid.ColumnSpan="2"/>
+
+                    <TextBox x:Name="textBox_Laji" TextWrapping="Wrap" 
+                        Text="" VerticalAlignment="Top" Margin="165,119,467,0" Grid.Row="1" 
+                        FontSize="20" Grid.ColumnSpan="2" IsEnabled="True"/>
+
+                    <TextBox x:Name="textBox_Rotu" TextWrapping="Wrap" 
+                        Text="" VerticalAlignment="Top" Margin="165,167,467,0" Grid.Row="1" 
+                        FontSize="20" Grid.ColumnSpan="2" IsEnabled="True"/>
+
+                    <TextBox x:Name="textBox_EläinIkä" TextWrapping="Wrap" 
+                        Text="" VerticalAlignment="Top" Margin="165,217,467,0" Grid.Row="1" 
+                        FontSize="20" Grid.ColumnSpan="2" IsEnabled="True"/>
+
+                    <TextBox x:Name="textBox_EläinPaino" TextWrapping="Wrap" 
+                        Text="" VerticalAlignment="Top" Margin="165,265,467,0" 
+                        Grid.Row="1" FontSize="20" Grid.ColumnSpan="2"/>
+
+                    <Button x:Name="BTN_EläinSV" Content="Tallenna" 
+                        HorizontalAlignment="Left" Margin="151,319,0,0" 
+                        Grid.Row="1" VerticalAlignment="Top" Width="75" 
+                        Click="BTN_AsiakasSV_Click"/>
                 </Grid>
             </TabItem>
 
