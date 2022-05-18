@@ -37,7 +37,7 @@
                     <StackPanel Orientation="Horizontal" Background="#3293a8">
                         <TextBox x:Name="textBoxTyöntekijä" TextWrapping="Wrap" Text="" 
                                  Width="120" VerticalAlignment="Center" Margin="10,0,0,0" 
-                                 TextChanged="textBox_TextChanged"/>
+                                 />
                         <ComboBox x:Name="IdBox" Width="120" VerticalAlignment="Center" 
                                   Margin="10,0,0,0"/>
                         <ComboBox x:Name="sähköpostiBox" Width="120" 
@@ -249,8 +249,8 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="EläinLisääTab" Header="Potilaan lisäys" 
-                Height="20" VerticalAlignment="Bottom" IsEnabled="False" 
-                Visibility="Visible" Margin="-2,0">
+                Height="20" VerticalAlignment="Bottom" IsEnabled="True" 
+                Visibility="Collapsed" Margin="-2,0">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -269,7 +269,7 @@
 
                         <Button x:Name="tyhjääButtonPotilas" IsEnabled ="False" 
                             Width="100" VerticalAlignment="Center" Content="Tyhjää" 
-                            Margin="10,0,0,0" Click="tyhjääButtonPotilas_Click"/>
+                            Margin="10,0,0,0" />
                     </StackPanel>
 
                     <Label Content="Nimi:" HorizontalAlignment="Left" 
@@ -323,7 +323,7 @@
                     <Button x:Name="BTN_EläinSV" Content="Tallenna" 
                         HorizontalAlignment="Left" Margin="151,319,0,0" 
                         Grid.Row="1" VerticalAlignment="Top" Width="75" 
-                        Click="BTN_AsiakasSV_Click"/>
+                        Click="BTN_EläinSV_Click"/>
                 </Grid>
             </TabItem>
 

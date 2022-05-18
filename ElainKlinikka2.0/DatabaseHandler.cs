@@ -105,7 +105,7 @@ namespace ElainKlinikka2._0
 
         #region DATA_ACCESS
 
-        #region KÄYTTÄJÄT
+        #region KÄYTTÄJÄT ETSIMINEN
         /// <summary>
         /// Try to find users with the matching email.
         /// </summary>
@@ -152,7 +152,7 @@ namespace ElainKlinikka2._0
         }
         #endregion
 
-        #region ELÄIN
+        #region ELÄIN ETSIMINEN
         public List<Eläin> FindEläinsWithName(string name)
         {
             if (openConnection == null)
@@ -195,6 +195,8 @@ namespace ElainKlinikka2._0
         #endregion
 
         #region LISÄÄ_TIETOJA
+
+        #region ASIAKAS
         public void AddAsiakas(string id, string etunimi, string sukunimi)
         {
             try
@@ -204,7 +206,8 @@ namespace ElainKlinikka2._0
                     inst.CreateConnection();
                 }
 
-                OleDbCommand command = new OleDbCommand("insert into Omistaja (OmistajaID,Etunimi,Sukunimi) values('" + id + "' , '" + etunimi + "','" + sukunimi + "') ;", openConnection);
+                OleDbCommand command = new OleDbCommand("insert into Omistaja (OmistajaID,Etunimi,Sukunimi) " +
+                    "values('" + id + "' , '" + etunimi + "','" + sukunimi + "') ;", openConnection);
 
                 command.ExecuteNonQuery();
 
@@ -219,6 +222,33 @@ namespace ElainKlinikka2._0
 
         }
 
+        #endregion
+
+        #region ELÄIN
+
+        public void AddEläin(string nimi, string laji, string rotu, int ikä)
+        {
+            try
+            {
+                if (openConnection == null)
+                {
+                    inst.CreateConnection();
+                }
+
+                OleDbCommand command = new OleDbCommand("insert into Lemmikki (LemmikkiNimi,Laji,Rotu,Ikä) " +
+                    "values('" + nimi + "' , '" + laji + "' , '" + rotu + "' , '" + ikä + "') ;", openConnection);
+
+                command.ExecuteNonQuery();
+
+                MessageBox.Show("Tiedot tallennettu onnistuneesti");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex);
+            }
+        }
+
+        #endregion
 
         #endregion
 

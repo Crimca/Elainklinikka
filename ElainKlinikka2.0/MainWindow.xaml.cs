@@ -95,6 +95,8 @@ namespace ElainKlinikka2._0
                     AsiakasLisääTab.IsEnabled = true;
                     HakuTab.Visibility = Visibility.Visible;
                     HakuTab.IsEnabled = true;
+                    EläinLisääTab.Visibility = Visibility.Visible;
+                    EläinLisääTab.IsEnabled = true;
                 }
 
                 if (u[0].UserRooli == "2")
@@ -253,6 +255,13 @@ namespace ElainKlinikka2._0
 
             
 
+        }
+
+        private void BTN_EläinSV_Click(object sender, RoutedEventArgs e)
+        {
+            int x = int.Parse(textBox_EläinIkä.Text);
+
+            DatabaseHandler.Instance.AddEläin(textBox_EläinNimi.Text, textBox_Laji.Text, textBox_Rotu.Text, x);
         }
     }
 }
