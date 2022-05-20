@@ -17,6 +17,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="{Binding EläimenKuvaus}"></Label>       
+        <Label Content="{Binding EläimenKuvaus}"></Label>
+        <!--<Button x:Name="BTN_Sulje" Content="Sulje" HorizontalAlignment="Left" 
+                Margin="627,94,0,0" Grid.Row="2" VerticalAlignment="Top" 
+                Width="75" />-->
     </Grid>
 </UserControl>

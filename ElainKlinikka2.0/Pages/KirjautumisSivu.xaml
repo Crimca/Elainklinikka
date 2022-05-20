@@ -1,0 +1,30 @@
+﻿<Window x:Class="ElainKlinikka2._0.KirjautumisSivu"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElainKlinikka2._0"
+      mc:Ignorable="d"
+      Title="Kirjautumis sivu" Height="335" Width="556" WindowStyle="None" Foreground="White" Background="#FFF0F3F4" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Rectangle HorizontalAlignment="Center" Height="35" Stroke="#FF2F93BF" VerticalAlignment="Center" Width="556" StrokeThickness="10" Fill="#FF2F93BF" MouseDown="ClickToMoveWindow"/>
+        <Label Content="Kirjaudu" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="44" Background="Transparent" Foreground="White" FontSize="22" MouseDown="ClickToMoveWindow"/>
+
+        <Label Grid.Row="1" Content="Email&#xD;&#xA;" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" FontSize="36" Width="161" Margin="-350,0,0,0"/>
+        <TextBox Grid.Row="1" x:Name="usernameBox" Height="60" TextWrapping="Wrap" VerticalAlignment="Center" TextChanged="usernameBox_TextChanged" TabIndex="1" FontSize="36" HorizontalAlignment="Right" Margin="0,0,10,0" Width="350"/>
+
+        <Label Grid.Row="2" Content="Salasana&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" FontSize="36" Width="161" Margin="-350,0,0,0"/>
+        <PasswordBox Grid.Row="2" x:Name="salasanaBox" HorizontalAlignment="Right" Height="60" VerticalAlignment="Center" Width="350" PasswordChanged="salasanaBox_TextChanged" TabIndex="2" FontSize="36" Margin="0,0,10,0"/>
+
+        <Button Grid.Row="3" x:Name="peruutaButton" Content="Peruuta" HorizontalAlignment="Center" VerticalAlignment="Center" Width="224" Click="kirjauduClick" TabIndex="4" IsCancel="True" FontSize="36" Margin="250,0,0,0"/>
+        <Button Grid.Row="3" x:Name="kirjauduButton" Content="Kirjaudu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="224" Click="kirjauduClick" IsDefault="True" IsEnabled="False" TabIndex="3" FontSize="36" Margin="-250,0,0,0"/>
+        <Image HorizontalAlignment="Right" Height="35" VerticalAlignment="Center" Width="35" Source="/Images/close-window-512.png" MouseUp="CloseApplication"/>
+    </Grid>
+</Window>

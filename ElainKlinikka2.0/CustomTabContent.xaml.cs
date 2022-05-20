@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -24,5 +25,14 @@ namespace ElainKlinikka2._0
         {
             InitializeComponent();
         }
+
+       /* private TabControl tabControl1;
+        public System.Windows.TabPage SelectedTab { get; set; }
+        private void BTN_Sulje_Click(object sender, RoutedEventArgs e)
+        {
+            
+                tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+        }
+       */
     }
 }
