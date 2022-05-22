@@ -92,12 +92,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\Animal.cs" />
+    <Compile Include="Helpers\Appointment.cs" />
+    <Compile Include="Helpers\Employee.cs" />
     <Compile Include="Helpers\Owner.cs" />
+    <Compile Include="Helpers\Payment.cs" />
     <Compile Include="Helpers\Pet.cs" />
+    <Compile Include="Helpers\PriceList.cs" />
     <Compile Include="OLD\Asiakas.cs" />
     <Compile Include="Helpers\database.cs" />
     <Compile Include="OLD\DatabaseHandler.cs" />
     <Compile Include="OLD\Käynti.cs" />
+    <Compile Include="Pages\OwnerWindow_New.xaml.cs">
+      <DependentUpon>OwnerWindow_New.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OwnerWindow_Update.xaml.cs">
+      <DependentUpon>OwnerWindow_Update.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PetWindow_New.xaml.cs">
       <DependentUpon>PetWindow_New.xaml</DependentUpon>
     </Compile>
@@ -121,6 +131,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\OwnerWindow_New.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OwnerWindow_Update.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PetWindow_New.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

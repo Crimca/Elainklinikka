@@ -24,10 +24,14 @@ namespace ElainKlinikka2._0.Helpers
         private OleDbConnection conn = null;
         private static string DB_PATH = @"..\..\lib.accdb";
 
-        private string userTable = "Users";
-        private string petTable = "Pet";
         private string animalTable = "Animal";
+        private string appointmentTable = "Appointment";
+        private string employeeTable = "Employee";
         private string ownerTable = "Owner";
+        private string paymentTable = "Payment";
+        private string petTable = "Pet";
+        private string priceListTable = "PriceList";
+        private string userTable = "Users";
 
         //Constructor
         public database()
@@ -149,7 +153,7 @@ namespace ElainKlinikka2._0.Helpers
                             prescriptions = myReader["prescriptions"].ToString(),
                             diagnoses = myReader["diagnoses"].ToString(),
                             ownerID = myReader["ownerID"].ToString(),
-                            animalID = Int32.Parse(myReader["animalID"].ToString()),
+                            animalID = myReader["animalID"].ToString(),
                             comment = myReader["comment"].ToString()
                         };
                         list.Add(p);
@@ -175,7 +179,6 @@ namespace ElainKlinikka2._0.Helpers
         public Pet LoadPet(string id)
         {
             string query = "SELECT * FROM " + petTable + " WHERE petID = " + id + "";
-            List<Pet> list = new List<Pet>();
 
             if (this.OpenConnection() == true)
             {
@@ -196,7 +199,7 @@ namespace ElainKlinikka2._0.Helpers
                         prescriptions = myReader["prescriptions"].ToString(),
                         diagnoses = myReader["diagnoses"].ToString(),
                         ownerID = myReader["ownerID"].ToString(),
-                        animalID = Int32.Parse(myReader["animalID"].ToString()),
+                        animalID = myReader["animalID"].ToString(),
                         comment = myReader["comment"].ToString()
                     };
                 }
@@ -305,8 +308,7 @@ namespace ElainKlinikka2._0.Helpers
         }
 
 
-        #endregion Pets   
-
+        #endregion Pets  
 
         #region animals   
         public List<Animal> GetAnimalTypes()
@@ -332,9 +334,10 @@ namespace ElainKlinikka2._0.Helpers
                         list.Add(p);
                     }
 
+                    List<Animal> SortedList = list.OrderBy(o => o.animalID).ToList();
                     myReader.Close();
                     this.CloseConnection();
-                    return list;
+                    return SortedList;
                 }
                 catch (Exception ex)
                 {
@@ -394,7 +397,218 @@ namespace ElainKlinikka2._0.Helpers
             }
         }
 
+        //Load One Owner
+        public Owner GetOwner(string id)
+        {
+            string query = "SELECT * FROM " + ownerTable + " WHERE ownerID = " + id + "";
+
+            if (this.OpenConnection() == true)
+            {
+
+                OleDbCommand cmd = new OleDbCommand(query, conn);
+                OleDbDataReader myReader = cmd.ExecuteReader();
+                Owner o = new Owner();
+
+                while (myReader.Read())
+                {
+                    o = new Owner
+                    {
+                        ownerID = Int32.Parse(myReader["ownerID"].ToString()),
+                        Forename = myReader["Forename"].ToString(),
+                        Surname = myReader["Surname"].ToString(),
+                        Streetname = myReader["Streetname"].ToString(),
+                        Postalcode = myReader["Postalcode"].ToString(),
+                        City = myReader["City"].ToString(),
+                        Phonenum = myReader["Phonenum"].ToString()
+                    };
+                }
+
+                myReader.Close();
+                this.CloseConnection();
+                return o;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        //Update Owner
+        public void UpdateOwner(Owner owner)
+        {
+            if (this.OpenConnection() == true)
+            {
+                try
+                {
+                    OleDbCommand cmd = new OleDbCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "UPDATE " + ownerTable + " SET "
+                    + "Forename =  '" + owner.Forename + "', "
+                    + "Surname = '" + owner.Surname + "', "
+                    + "Streetname = '" + owner.Streetname + "', "
+                    + "Postalcode = '" + owner.Postalcode + "', "
+                    + "City = '" + owner.City + "', "
+                    + "Phonenum = '" + owner.Phonenum + "' "
+                    + "WHERE ownerID = " + owner.ownerID;
+
+                    Console.WriteLine(cmd.CommandText);
+                    cmd.Connection = conn;
+
+                    cmd.ExecuteNonQuery();
+                    {
+                        MessageBox.Show("Päivitys onnistui!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string Message = ex.Message;
+                    throw ex;
+                }
+            }
+        }
+
+
+        //Insert New Owner
+        public void InsertOwner(Owner owner)
+        {
+            if (this.OpenConnection() == true)
+            {
+                try
+                {
+                    OleDbCommand cmd = new OleDbCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "INSERT INTO " + ownerTable + " VALUES ('" + owner.ownerID
+                    + "', '" + owner.Forename
+                    + "', '" + owner.Surname
+                    + "', '" + owner.Streetname
+                    + "', '" + owner.Postalcode
+                    + "', '" + owner.City
+                    + "', '" + owner.Phonenum + "')";
+
+
+                    cmd.Connection = conn;
+
+
+
+                    cmd.ExecuteNonQuery();
+                    {
+                        MessageBox.Show("Päivitys onnistui!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string Message = ex.Message;
+                    throw ex;
+                }
+            }
+        }
+
+        public int GetNextOwnerID()
+        {
+            string query = "SELECT Count(ownerID) FROM " + ownerTable;
+
+            if (this.OpenConnection() == true)
+            {
+                OleDbCommand cmd = new OleDbCommand(query, conn);
+                int nextId = (int)cmd.ExecuteScalar() + 1;
+                this.CloseConnection();
+                return nextId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         #endregion Owners   
 
+        #region Prices   
+        public List<PriceList> GetPrices()
+        {
+            string query = "SELECT * FROM " + priceListTable;
+            List<PriceList> list = new List<PriceList>();
+
+            if (this.OpenConnection() == true)
+            {
+                try
+                {
+                    OleDbCommand cmd = new OleDbCommand(query, conn);
+                    OleDbDataReader myReader = cmd.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        PriceList p = new PriceList
+                        {
+                            itemID = Int32.Parse(myReader["itemID"].ToString()),
+                            Price = myReader["Price"].ToString(),
+                            Procedure = myReader["Procedure"].ToString(),
+                            MedProc = myReader["MedProc"].ToString()
+                        };
+                        list.Add(p);
+                    }
+
+                    myReader.Close();
+                    this.CloseConnection();
+                    return list;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+
+        #endregion Prices   
+
+
+        #region Appointments
+        public List<Appointment> GetAppointments()
+        {
+            string query = "SELECT * FROM " + appointmentTable;
+            List<Appointment> list = new List<Appointment>();
+
+            if (this.OpenConnection() == true)
+            {
+                try
+                {
+                    OleDbCommand cmd = new OleDbCommand(query, conn);
+                    OleDbDataReader myReader = cmd.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        Appointment p = new Appointment
+                        {
+                            appointmentID = myReader["appointmentID"].ToString(),
+                            Reason = myReader["Reason"].ToString(),
+                            petID = myReader["petID"].ToString(),
+                            employeeID = myReader["employeeID"].ToString(),
+                            Day = myReader["Day"].ToString(),
+                            Month = myReader["Month"].ToString(),
+                            Year = myReader["Year"].ToString(),
+                        };
+                        list.Add(p);
+                    }
+
+                    List<Appointment> SortedList = list.OrderBy(o => o.appointmentID).ToList();
+                    myReader.Close();
+                    this.CloseConnection();
+                    return SortedList;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+        #endregion Appointments
     }
 }

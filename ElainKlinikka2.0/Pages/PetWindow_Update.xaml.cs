@@ -70,7 +70,7 @@ namespace ElainKlinikka2._0.Pages
             {
                 petID = tb_petID.Text,
                 ownerID = tb_petOwnerID.Text,
-                animalID = Int32.Parse(tb_petAnimalID.Text),
+                animalID = tb_petAnimalID.Text,
                 petName = tb_petName.Text,
                 weight = float.Parse(tb_petWeight.Text),
                 age = Int32.Parse(tb_petAge.Text),
