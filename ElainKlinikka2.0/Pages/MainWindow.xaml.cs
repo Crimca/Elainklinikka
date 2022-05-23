@@ -305,13 +305,13 @@ namespace ElainKlinikka2._0
             ownerCity_Col.Binding = new Binding("City");
             ownerPhonenum_Col.Binding = new Binding("Phonenum");
 
-            ownerID_col.Header = "Owner ID";
-            ownerForename_col.Header = "Forename";
-            ownerSurname_col.Header = "Surname";
-            ownerStreetName_col.Header = "Streetname";
-            ownerPostCode_Col.Header = "Postalcode";
-            ownerCity_Col.Header = "City";
-            ownerPhonenum_Col.Header = "Phonenum";
+            ownerID_col.Header = "Omistaja ID";
+            ownerForename_col.Header = "Etunimi";
+            ownerSurname_col.Header = "Sukunimi";
+            ownerStreetName_col.Header = "Osoite";
+            ownerPostCode_Col.Header = "Postitoimipaikka";
+            ownerCity_Col.Header = "Paikkakunta";
+            ownerPhonenum_Col.Header = "Puhelin nro";
         }
 
         private void OwnerDB_Selected(object sender, SelectionChangedEventArgs e)
@@ -453,10 +453,10 @@ namespace ElainKlinikka2._0
             itemProcedure_col.Binding = new Binding("Procedure");
             itemMedProc_col.Binding = new Binding("MedProc");
 
-            itemID_col.Header = "Item ID";
-            itemPrice_col.Header = "Price";
-            itemProcedure_col.Header = "Item";
-            itemMedProc_col.Header = "Medical or Procedure";
+            itemID_col.Header = "ID";
+            itemPrice_col.Header = "Hinta";
+            itemProcedure_col.Header = "Tehdyt toimenpiteet";
+            itemMedProc_col.Header = "Tyyppi";
         }
 
         public void ClosePriceWindow()
@@ -591,12 +591,12 @@ namespace ElainKlinikka2._0
             year_col.Binding = new Binding("Year");
 
             appointmentid_col.Header = "ID";
-            reason_col.Header = "Reason";
-            petID_col.Header = "Pet ID";
-            employeeID_col.Header = "Employee";
-            day_col.Header = "Day";
-            month_col.Header = "Month";
-            year_col.Header = "Year";
+            reason_col.Header = "Syy";
+            petID_col.Header = "Lemmikin ID";
+            employeeID_col.Header = "Työntekijä";
+            day_col.Header = "Päivä";
+            month_col.Header = "Kuukausi";
+            year_col.Header = "Vuosi";
         }
 
         private void OpenNewAppointment(object sender, RoutedEventArgs e)
@@ -609,6 +609,9 @@ namespace ElainKlinikka2._0
 
         public void CloseAppointmentWindow()
         {
+            this.IsEnabled = true;
+            this.Activate();
+            LoadPetTable();
             LoadAppointmentTable();
             Loading();
             appointmentGrid.UnselectAll();
