@@ -35,6 +35,7 @@ namespace ElainKlinikka2._0
         List<Pet> pets;
         List<Animal> animals;
         List<PriceList> prices;
+        List<Appointment> appointments;
 
         database db;
 
@@ -60,7 +61,7 @@ namespace ElainKlinikka2._0
             CreateOwnerTable();
             CreatePetTable();
             CreatePriceTable();
-
+            CreateAppointmentTable();
             //kerrotaan listview komponentille, että sen pitää näyttää
             // valitun kirjaston teokset listaa sen sisällä
             //ListSource kertoo itemeiden lähteen ja jokainen näytetään rivinä ListViewn sisällä
@@ -252,7 +253,6 @@ namespace ElainKlinikka2._0
 
 
         #endregion PET WINDOW
-
 
         #region OWNER WINDOW
 
@@ -507,6 +507,121 @@ namespace ElainKlinikka2._0
 
         #endregion OWNER WINDOW
 
+
+        #region APPOINTMENTS WINDOW
+
+        private void calendarAppointment_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (calendarAppointment.SelectedDate != null)
+            {
+                appointmentGrid.Items.Clear();
+                List<Appointment> filteredAppointments = new List<Appointment>();
+
+                Console.WriteLine(calendarAppointment.SelectedDate.ToString().Split('/')[0] + " _ " + calendarAppointment.SelectedDate.ToString().Split('/')[1] + " _ " + calendarAppointment.SelectedDate.ToString().Split('/')[2].Split(' ')[0]);
+                foreach (Appointment p in appointments)
+                {
+                    if (p.Day.Contains(calendarAppointment.SelectedDate.ToString().Split('/')[0]))
+                    {
+                        if (p.Month.Contains(calendarAppointment.SelectedDate.ToString().Split('/')[1]))
+                        {
+                            if (p.Year.Contains(calendarAppointment.SelectedDate.ToString().Split('/')[2].Split(' ')[0]))
+                            {
+                                filteredAppointments.Add(p);
+                            }
+                        }
+                    }
+                }
+
+                if (filteredAppointments.Count > 0)
+                {
+                    foreach (Appointment p in filteredAppointments)
+                    {
+                        appointmentGrid.Items.Add(p);
+                    }
+                }
+
+            }
+        }
+
+        void LoadAppointmentTable()
+        {
+            appointmentGrid.Items.Clear();
+            appointments = db.GetAppointments();
+
+            foreach (Appointment p in appointments)
+            {
+                appointmentGrid.Items.Add(new Appointment
+                {
+                    appointmentID = p.appointmentID,
+                    Reason = p.Reason,
+                    petID = p.petID,
+                    employeeID = p.employeeID,
+                    Day = p.Day,
+                    Month = p.Month,
+                    Year = p.Year
+                });
+            }
+
+        }
+
+        void CreateAppointmentTable()
+        {
+            DataGridTextColumn appointmentid_col = new DataGridTextColumn();
+            DataGridTextColumn day_col = new DataGridTextColumn();
+            DataGridTextColumn month_col = new DataGridTextColumn();
+            DataGridTextColumn year_col = new DataGridTextColumn();
+            DataGridTextColumn reason_col = new DataGridTextColumn();
+            DataGridTextColumn petID_col = new DataGridTextColumn();
+            DataGridTextColumn employeeID_col = new DataGridTextColumn();
+
+            appointmentGrid.Columns.Add(appointmentid_col);
+            appointmentGrid.Columns.Add(day_col);
+            appointmentGrid.Columns.Add(month_col);
+            appointmentGrid.Columns.Add(year_col);
+            appointmentGrid.Columns.Add(reason_col);
+            appointmentGrid.Columns.Add(petID_col);
+            appointmentGrid.Columns.Add(employeeID_col);
+
+            appointmentid_col.Binding = new Binding("appointmentID");
+            reason_col.Binding = new Binding("Reason");
+            petID_col.Binding = new Binding("petID");
+            employeeID_col.Binding = new Binding("employeeID");
+            day_col.Binding = new Binding("Day");
+            month_col.Binding = new Binding("Month");
+            year_col.Binding = new Binding("Year");
+
+            appointmentid_col.Header = "ID";
+            reason_col.Header = "Reason";
+            petID_col.Header = "Pet ID";
+            employeeID_col.Header = "Employee";
+            day_col.Header = "Day";
+            month_col.Header = "Month";
+            year_col.Header = "Year";
+        }
+
+        private void OpenNewAppointment(object sender, RoutedEventArgs e)
+        {
+            var window = new AppointmentWindow_New(this);
+            window.Owner = this;
+            window.Show();
+            this.IsEnabled = false;
+        }
+
+        public void CloseAppointmentWindow()
+        {
+            LoadAppointmentTable();
+            Loading();
+            appointmentGrid.UnselectAll();
+        }
+
+        private void AppointmentReset(object sender, RoutedEventArgs e)
+        {
+            LoadAppointmentTable();
+        }
+
+
+        #endregion 
+
         #region window buttons
 
         //Mouse down to move window
@@ -551,7 +666,8 @@ namespace ElainKlinikka2._0
         private void Show_BookingDB(object sender, RoutedEventArgs e)
         {
             HideAll();
-         //   VarauksetCanvas.Visibility = Visibility.Visible;
+            LoadAppointmentTable();
+            appointmentCanvas.Visibility = Visibility.Visible;
         }
 
         //Show Items database
@@ -566,12 +682,11 @@ namespace ElainKlinikka2._0
         {
             PetDBCanvas.Visibility = Visibility.Hidden;
             ownerDBCanvas.Visibility = Visibility.Hidden;
-            // VarauksetCanvas.Visibility = Visibility.Hidden;
+            appointmentCanvas.Visibility = Visibility.Hidden;
             priceDBCanvas.Visibility = Visibility.Hidden;
         }
 
         #endregion
-
 
         async Task Loading()
         {
@@ -656,9 +771,6 @@ namespace ElainKlinikka2._0
 
             loadingCanva.Visibility = Visibility.Hidden;
         }
-
-
-         
 
     }
 }

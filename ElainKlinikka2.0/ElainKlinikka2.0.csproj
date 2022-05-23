@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AppointmentWindow_New.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\KirjautumisSivu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +106,9 @@
     <Compile Include="Helpers\database.cs" />
     <Compile Include="OLD\DatabaseHandler.cs" />
     <Compile Include="OLD\Käynti.cs" />
+    <Compile Include="Pages\AppointmentWindow_New.xaml.cs">
+      <DependentUpon>AppointmentWindow_New.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OwnerWindow_New.xaml.cs">
       <DependentUpon>OwnerWindow_New.xaml</DependentUpon>
     </Compile>

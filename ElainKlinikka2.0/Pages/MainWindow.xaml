@@ -35,11 +35,11 @@
             <DataGrid x:Name="PetDB" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="1000" SelectionChanged="PetDB_Selected" HorizontalAlignment="Center" VerticalAlignment="Top" Height="394" Canvas.Top="40"/>
             <Button x:Name="btn_Edit" Content="Muokkaa lemmikin tietoja" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="190"/>
             <Button x:Name="btn_NewPet" Content="Lisää uusi lemmikki" Canvas.Top="440" Height="50" Width="156" Click="OpenPetNew" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Button x:Name="btn_Edit_Copy" Content="Tarkastele varauksia" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="369" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button x:Name="btn_Edit_Copy1" Content="Tarkastele maksuja" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="547" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_Edit_Copy" Content="View Appointments" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="369" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_Edit_Copy1" Content="View Payments" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="547" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBox x:Name="tb_petSearcher" TextWrapping="Wrap" Canvas.Top="10" Width="203" Height="25" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="10"/>
-            <Button x:Name="btn_Edit_Copy2" Content="Hae" Canvas.Top="10" Height="25" Width="156" Click="SearchPetDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button x:Name="btn_Edit_Copy3" Content="Tyhjää" Canvas.Top="10" Height="25" Width="156" Click="petResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_Edit_Copy2" Content="Search" Canvas.Top="10" Height="25" Width="156" Click="SearchPetDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_Edit_Copy3" Content="Reset" Canvas.Top="10" Height="25" Width="156" Click="petResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
 
         <Canvas x:Name="ownerDBCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Hidden">
@@ -47,15 +47,27 @@
             <Button x:Name="btn_ownerEdit" Content="Muokkaa lemmikin tietoja" Canvas.Top="440" Height="50" Width="156" Click="OpenOwnerInformation" Background="#FF81B8C1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="190"/>
             <Button x:Name="btn_NewOwner" Content="Lisää uusi lemmikki" Canvas.Top="440" Height="50" Width="156" Click="OpenOwnerNew" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="tb_ownerpetSearcher" TextWrapping="Wrap" Canvas.Top="10" Width="203" Height="25" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="10"/>
-            <Button x:Name="btn_ownerEdit_Copy2" Content="Hae" Canvas.Top="10" Height="25" Width="156" Click="SearchOwnerDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button x:Name="btn_ownerEdit_Copy3" Content="Tyhjää" Canvas.Top="10" Height="25" Width="156" Click="ownerResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_ownerEdit_Copy2" Content="Search" Canvas.Top="10" Height="25" Width="156" Click="SearchOwnerDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_ownerEdit_Copy3" Content="Reset" Canvas.Top="10" Height="25" Width="156" Click="ownerResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
 
-        <Canvas x:Name="priceDBCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Visible">
+        <Canvas x:Name="priceDBCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Hidden">
             <DataGrid x:Name="priceDB" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="1000" SelectionChanged="OwnerDB_Selected" HorizontalAlignment="Center" VerticalAlignment="Top" Height="450" Canvas.Top="40"/>
             <TextBox x:Name="tb_priceSearcher" TextWrapping="Wrap" Canvas.Top="10" Width="203" Height="25" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="10"/>
-            <Button x:Name="btn_priceEdit_Copy2" Content="Hae" Canvas.Top="10" Height="25" Width="156" Click="SearchPriceDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button x:Name="btn_priceEdit_Copy3" Content="Tyhjää" Canvas.Top="10" Height="25" Width="156" Click="PriceResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_priceEdit_Copy2" Content="Search" Canvas.Top="10" Height="25" Width="156" Click="SearchPriceDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_priceEdit_Copy3" Content="Reset" Canvas.Top="10" Height="25" Width="156" Click="PriceResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </Canvas>
+
+        <Canvas x:Name="appointmentCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Visible">
+            <Viewbox Height="298" Width="304" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="10">
+                <Calendar x:Name="calendarAppointment" SelectedDatesChanged="calendarAppointment_SelectedDatesChanged" />
+            </Viewbox>
+            <DataGrid x:Name="appointmentGrid" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="648" SelectionChanged="OwnerDB_Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Height="490" Canvas.Left="342"/>
+
+            <Button x:Name="btn_newAppointment" Content="New" Canvas.Top="374" Height="47" Width="304" Click="OpenNewAppointment" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="btn_changeaAppointment" Content="Change" Canvas.Top="433" Height="47" Width="304" Click="ownerResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_ViewallAppointments" Content="View All Appointments" Canvas.Top="313" Height="47" Width="304" Click="AppointmentReset" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
         </Canvas>
 
 

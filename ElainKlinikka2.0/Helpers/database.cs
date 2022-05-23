@@ -564,7 +564,6 @@ namespace ElainKlinikka2._0.Helpers
 
         #endregion Prices   
 
-
         #region Appointments
         public List<Appointment> GetAppointments()
         {
@@ -609,6 +608,65 @@ namespace ElainKlinikka2._0.Helpers
                 return list;
             }
         }
+
+        public int GetNextAppointmentID()
+        {
+            string query = "SELECT Count(appointmentID) FROM " + appointmentTable;
+
+            if (this.OpenConnection() == true)
+            {
+                OleDbCommand cmd = new OleDbCommand(query, conn);
+                int nextId = (int)cmd.ExecuteScalar() + 1;
+                this.CloseConnection();
+                return nextId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         #endregion Appointments
+
+        #region employee
+        public List<Employee> GetEmployees()
+        {
+            string query = "SELECT * FROM " + employeeTable;
+            List<Employee> list = new List<Employee>();
+
+            if (this.OpenConnection() == true)
+            {
+                try
+                {
+                    OleDbCommand cmd = new OleDbCommand(query, conn);
+                    OleDbDataReader myReader = cmd.ExecuteReader();
+
+                    while (myReader.Read())
+                    {
+                        Employee p = new Employee
+                        {
+                            employeeID = Int32.Parse(myReader["employeeID"].ToString()),
+                            Forename = myReader["Forename"].ToString(),
+                            Surname = myReader["Surname"].ToString(),
+                            appointmentID = myReader["appointmentID"].ToString()
+                        };
+                        list.Add(p);
+                    }
+
+                    myReader.Close();
+                    this.CloseConnection();
+                    return list;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return list;
+                }
+            }
+            else
+            {
+                return list;
+            }
+        }
+        #endregion employee
     }
 }
