@@ -14,9 +14,24 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -64,11 +79,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="KirjautumisSivu.xaml">
+    <Page Include="Pages\AppointmentWindow_New.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Pages\KirjautumisSivu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -76,26 +95,65 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Asiakas.cs" />
-    <Compile Include="DatabaseHandler.cs" />
-    <Compile Include="Käynti.cs" />
+    <Compile Include="Helpers\Animal.cs" />
+    <Compile Include="Helpers\Appointment.cs" />
+    <Compile Include="Helpers\Employee.cs" />
+    <Compile Include="Helpers\Owner.cs" />
+    <Compile Include="Helpers\Payment.cs" />
+    <Compile Include="Helpers\Pet.cs" />
+    <Compile Include="Helpers\PriceList.cs" />
+    <Compile Include="OLD\Asiakas.cs" />
+    <Compile Include="Helpers\database.cs" />
+    <Compile Include="OLD\DatabaseHandler.cs" />
+    <Compile Include="OLD\Käynti.cs" />
+    <Compile Include="Pages\AppointmentWindow_New.xaml.cs">
+      <DependentUpon>AppointmentWindow_New.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OwnerWindow_New.xaml.cs">
+      <DependentUpon>OwnerWindow_New.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OwnerWindow_Update.xaml.cs">
+      <DependentUpon>OwnerWindow_Update.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PetWindow_New.xaml.cs">
+      <DependentUpon>PetWindow_New.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PetWindow_Update.xaml.cs">
+      <DependentUpon>PetWindow_Update.xaml</DependentUpon>
+    </Compile>
     <Compile Include="System\Windows\TabPage.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="OLD\User.cs" />
     <Compile Include="CustomTabContent.xaml.cs">
       <DependentUpon>CustomTabContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomTabItem.xaml.cs">
       <DependentUpon>CustomTabItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Eläin.cs" />
-    <Compile Include="KirjautumisSivu.xaml.cs">
+    <Compile Include="OLD\Eläin.cs" />
+    <Compile Include="Pages\KirjautumisSivu.xaml.cs">
       <DependentUpon>KirjautumisSivu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Klinikka.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="OLD\Klinikka.cs" />
+    <Compile Include="Pages\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\OwnerWindow_New.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OwnerWindow_Update.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PetWindow_New.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PetWindow_Update.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -122,6 +180,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\close-window-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\guinea-pig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\frog-face.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
