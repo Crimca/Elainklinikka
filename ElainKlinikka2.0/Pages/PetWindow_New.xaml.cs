@@ -79,14 +79,15 @@ namespace ElainKlinikka2._0.Pages
             pet.age = Int32.Parse(tb_petAge.Text);
             pet.vaccinations = "";
             pet.prescriptions = "";
-            pet.Appointments = "";
             pet.diagnoses = "";
             pet.ownerID = cb_OwnerID.SelectedItem.ToString().Split('|')[0];
-            pet.paymenthistory = "";
-            pet.animalID = Int32.Parse(cb_AnimalID.SelectedItem.ToString().Split('|')[0]);
+            pet.animalID = cb_AnimalID.SelectedItem.ToString().Split('|')[0];
             pet.comment = "";
 
             db.InsertPet(pet);
+
+            window.ClosePetInfo();
+            this.Close();
         }
     }
 }
