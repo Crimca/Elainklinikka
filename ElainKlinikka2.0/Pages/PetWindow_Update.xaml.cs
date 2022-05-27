@@ -33,6 +33,7 @@ namespace ElainKlinikka2._0.Pages
 
             cb_alive.Items.Add("Elossa");
             cb_alive.Items.Add("Kuollut");
+            cb_alive.SelectedIndex = 1;
         }
 
         void LoadPet(string petID)
@@ -82,6 +83,8 @@ namespace ElainKlinikka2._0.Pages
             };
 
             db.UpdatePet(pet);
+            window.ClosePetInfo();
+            this.Close();
         }
     }
 }
