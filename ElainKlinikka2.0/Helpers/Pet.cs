@@ -12,5 +12,6 @@
         public string ownerID { get; set; }
         public string animalID { get; set; }
         public string comment { get; set; }
+        public string alive { get; set; }
     }
 }

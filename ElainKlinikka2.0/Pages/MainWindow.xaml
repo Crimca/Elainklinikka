@@ -31,21 +31,24 @@
         <Button Grid.Row="1" Content="Varaukset" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="136" Margin="330,0,0,0" Click="Show_BookingDB"/>
         <Button Grid.Row="1" Content="Hinnasto" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="136" Margin="490,0,10,0" Click="Show_PriceDB"/>
 
-        <Canvas x:Name="PetDBCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Hidden">
+        <Canvas x:Name="PetDBCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Visible">
             <DataGrid x:Name="PetDB" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="1000" SelectionChanged="PetDB_Selected" HorizontalAlignment="Center" VerticalAlignment="Top" Height="394" Canvas.Top="40"/>
             <Button x:Name="btn_Edit" Content="Muokkaa lemmikin tietoja" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="190"/>
             <Button x:Name="btn_NewPet" Content="Lisää uusi lemmikki" Canvas.Top="440" Height="50" Width="156" Click="OpenPetNew" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Button x:Name="btn_Edit_Copy" Content="Tarkastele varauksia appointments" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="369" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button x:Name="btn_Edit_Copy1" Content="Tarkastele maksuja View Payments" Canvas.Top="440" Height="50" Width="156" Click="OpenPetInformation" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="547" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_Edit_Copy1" Content="Tarkastele maksuja" Canvas.Top="440" Height="50" Width="156" Click="ViewPayments" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="365" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <Button x:Name="btn_PetsNotVisitedInOneYear" Content="1. vuosi tarkistukset" Canvas.Top="440" Height="50" Width="183" Click="PetsNotVisited" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="539" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
             <TextBox x:Name="tb_petSearcher" TextWrapping="Wrap" Canvas.Top="10" Width="203" Height="25" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="10"/>
             <Button x:Name="btn_Edit_Copy2" Content="Hae" Canvas.Top="10" Height="25" Width="156" Click="SearchPetDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Button x:Name="btn_Edit_Copy3" Content="Tyhjää" Canvas.Top="10" Height="25" Width="156" Click="petResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_PetsNotVisitedInOneYear_Copy" Content="Kaikki maksamattomat laskut" Canvas.Top="439" Height="50" Width="190" Click="CalculateUnpaidVisits" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="754" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Canvas>
 
         <Canvas x:Name="ownerDBCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Hidden">
             <DataGrid x:Name="ownerDB" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="1000" SelectionChanged="OwnerDB_Selected" HorizontalAlignment="Center" VerticalAlignment="Top" Height="394" Canvas.Top="40"/>
-            <Button x:Name="btn_ownerEdit" Content="Muokkaa lemmikin tietoja" Canvas.Top="440" Height="50" Width="156" Click="OpenOwnerInformation" Background="#FF81B8C1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="190"/>
-            <Button x:Name="btn_NewOwner" Content="Lisää uusi lemmikki" Canvas.Top="440" Height="50" Width="156" Click="OpenOwnerNew" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="btn_ownerEdit" Content="Muokkaa omistajan tietoja" Canvas.Top="440" Height="50" Width="156" Click="OpenOwnerInformation" Background="#FF81B8C1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="190"/>
+            <Button x:Name="btn_NewOwner" Content="Lisää uusi omistaja" Canvas.Top="440" Height="50" Width="156" Click="OpenOwnerNew" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox x:Name="tb_ownerpetSearcher" TextWrapping="Wrap" Canvas.Top="10" Width="203" Height="25" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="10"/>
             <Button x:Name="btn_ownerEdit_Copy2" Content="Hae" Canvas.Top="10" Height="25" Width="156" Click="SearchOwnerDataGrid" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="218" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Button x:Name="btn_ownerEdit_Copy3" Content="Tyhjää" Canvas.Top="10" Height="25" Width="156" Click="ownerResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -58,15 +61,16 @@
             <Button x:Name="btn_priceEdit_Copy3" Content="Tyhjää" Canvas.Top="10" Height="25" Width="156" Click="PriceResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="379" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
 
-        <Canvas x:Name="appointmentCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Visible">
-            <Viewbox Height="298" Width="304" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="10">
+        <Canvas x:Name="appointmentCanvas" Grid.Row="2" Width="1000" Grid.RowSpan="1" Visibility="Hidden">
+            <Viewbox Height="298" Width="304" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="0">
                 <Calendar x:Name="calendarAppointment" SelectedDatesChanged="calendarAppointment_SelectedDatesChanged" />
             </Viewbox>
-            <DataGrid x:Name="appointmentGrid" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="648" SelectionChanged="OwnerDB_Selected" HorizontalAlignment="Left" VerticalAlignment="Center" Height="490" Canvas.Left="342"/>
+            <DataGrid x:Name="appointmentGrid" Grid.Row="2" RowHeight="25" IsSynchronizedWithCurrentItem="False" AllowDrop="True" IsReadOnly="True" Width="648" SelectionChanged="AppointmentGridSelection" HorizontalAlignment="Left" VerticalAlignment="Center" Height="490" Canvas.Left="342"/>
 
-            <Button x:Name="btn_newAppointment" Content="Uusi" Canvas.Top="374" Height="47" Width="304" Click="OpenNewAppointment" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button x:Name="btn_changeaAppointment" Content="Muokkaa" Canvas.Top="433" Height="47" Width="304" Click="ownerResetBtn" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button x:Name="btn_ViewallAppointments" Content="Tarkastele kaikkia varauksia All appointments" Canvas.Top="313" Height="47" Width="304" Click="AppointmentReset" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="btn_newAppointment" Content="Uusi" Canvas.Top="390" Height="48" Width="304" Click="OpenNewAppointment" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="btn_changeaAppointment" Content="Muokkaa" Canvas.Top="443" Height="47" Width="304" Click="UpdateAppointment" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="btn_ViewallAppointments" Content="Tarkastele kaikkia varauksia" Canvas.Top="286" Height="47" Width="304" Click="AppointmentReset" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="btn_ViewallAppointments_Copy" Content="Peru varaus" Canvas.Top="338" Height="47" Width="304" Click="CancelAppointment" Background="#FF81B8C1" FontWeight="Bold" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         </Canvas>
 

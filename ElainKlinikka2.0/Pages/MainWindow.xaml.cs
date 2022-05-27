@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ElainKlinikka2._0.Helpers;
 using ElainKlinikka2._0.Pages;
+using Microsoft.Win32;
 
 namespace ElainKlinikka2._0
 {
@@ -27,6 +28,7 @@ namespace ElainKlinikka2._0
     {
         private string kirjautunutUsername = "";
         private string selectedIDFromGrid = "";
+        private string selectedPetOwner = "";
 
         //Add login page param
         private KirjautumisSivu loginPage;
@@ -37,6 +39,7 @@ namespace ElainKlinikka2._0
         List<PriceList> prices;
         List<Appointment> appointments;
 
+        UnpaidCalculation unpaidCal;
         database db;
 
         //add login page as a parameter
@@ -56,12 +59,18 @@ namespace ElainKlinikka2._0
             
             Loading();
             pets = new List<Pet>();
+            unpaidCal = new UnpaidCalculation();
             InitializeComponent();
             HideAll();
             CreateOwnerTable();
             CreatePetTable();
             CreatePriceTable();
             CreateAppointmentTable();
+            pets = db.LoadPetTable();
+            owners = db.GetOwners();
+            animals = db.GetAnimalTypes();
+            prices = db.GetPrices();
+            appointments = db.GetAppointments();
             //kerrotaan listview komponentille, että sen pitää näyttää
             // valitun kirjaston teokset listaa sen sisällä
             //ListSource kertoo itemeiden lähteen ja jokainen näytetään rivinä ListViewn sisällä
@@ -77,9 +86,9 @@ namespace ElainKlinikka2._0
             PetDB.Items.Clear();
             pets = db.LoadPetTable();
             animals = db.GetAnimalTypes();
-            Console.WriteLine(animals[0].animalID + " | " + animals[0].breed + " | " + animals[0].species);
             List<Animal> SortedList = animals.OrderBy(o => o.animalID).ToList();
-            Console.WriteLine(animals[0].animalID + " | " + animals[0].breed + " | " + animals[0].species);
+
+
             foreach (Pet pet in pets)
             {
                 PetDB.Items.Add(new Pet
@@ -93,10 +102,11 @@ namespace ElainKlinikka2._0
                     prescriptions = pet.prescriptions,
                     diagnoses = pet.diagnoses,
                     ownerID = pet.ownerID,
-                    animalID = animals[Int32.Parse(pet.animalID) -1].species + " | " + animals[Int32.Parse(pet.animalID)-1].breed,
-                    comment = pet.comment
+                    animalID = SortedList[Int32.Parse(pet.animalID) - 1].species + " | " + SortedList[Int32.Parse(pet.animalID) - 1].breed,
+                    comment = pet.comment,
+                    alive = pet.alive == "1" ? "Elossa" : "Kuollut"
                 });
-            }
+            }        
         
         }
 
@@ -113,6 +123,7 @@ namespace ElainKlinikka2._0
             DataGridTextColumn ownerID_col = new DataGridTextColumn();
             DataGridTextColumn animalID_col = new DataGridTextColumn();
             DataGridTextColumn comment_col = new DataGridTextColumn();
+            DataGridTextColumn alive_col = new DataGridTextColumn();
 
             PetDB.Columns.Add(petID_col);
             PetDB.Columns.Add(petName_col);
@@ -124,6 +135,7 @@ namespace ElainKlinikka2._0
             PetDB.Columns.Add(ownerID_col);
             PetDB.Columns.Add(animalID_col);
             PetDB.Columns.Add(comment_col);
+            PetDB.Columns.Add(alive_col);
 
             petID_col.Binding = new Binding("petID");
             petName_col.Binding = new Binding("petName");
@@ -135,6 +147,7 @@ namespace ElainKlinikka2._0
             ownerID_col.Binding = new Binding("ownerID");
             animalID_col.Binding = new Binding("animalID");
             comment_col.Binding = new Binding("comment");
+            alive_col.Binding = new Binding("alive");
 
             petID_col.Header = "Lemmikin ID";
             petName_col.Header = "Nimi";
@@ -146,6 +159,7 @@ namespace ElainKlinikka2._0
             ownerID_col.Header = "Omistajan ID";
             animalID_col.Header = "Lemmikin tyyppi";
             comment_col.Header = "Kommentit";
+            alive_col.Header = "Tila";
         }
 
         private void PetDB_Selected(object sender, SelectionChangedEventArgs e)
@@ -161,6 +175,7 @@ namespace ElainKlinikka2._0
                         if (row != null)
                         {
                             selectedIDFromGrid = row.petID;
+                            selectedPetOwner = row.ownerID;
                             Console.WriteLine(selectedIDFromGrid); 
                         }
                     }
@@ -236,8 +251,7 @@ namespace ElainKlinikka2._0
                         else if (p.ownerID.Contains(tb_petSearcher.Text)) { filteredPets.Add(p); }
                         else if (p.animalID.ToString().Contains(tb_petSearcher.Text)) { filteredPets.Add(p); }
                         else if (p.comment.Contains(tb_petSearcher.Text)) { filteredPets.Add(p); }
-
-                        Console.WriteLine("in here");
+                        else if (p.alive.Contains(tb_petSearcher.Text)) { filteredPets.Add(p); }
                     }
 
                     if (filteredPets.Count > 0)
@@ -399,7 +413,6 @@ namespace ElainKlinikka2._0
                         else if (p.Postalcode.Contains(tb_ownerpetSearcher.Text)) { filteredOwners.Add(p); }
                         else if (p.City.Contains(tb_ownerpetSearcher.Text)) { filteredOwners.Add(p); }
                         else if (p.Phonenum.Contains(tb_ownerpetSearcher.Text)) { filteredOwners.Add(p); }
-                        Console.WriteLine("in here");
                     }
 
                     if (filteredOwners.Count > 0)
@@ -553,7 +566,7 @@ namespace ElainKlinikka2._0
                 appointmentGrid.Items.Add(new Appointment
                 {
                     appointmentID = p.appointmentID,
-                    Reason = p.Reason,
+                    Reason = p.Reason == "CANCELLED" ? "CANCELLED" : prices[Int32.Parse(p.Reason) - 1].Procedure,
                     petID = p.petID,
                     employeeID = p.employeeID,
                     Day = p.Day,
@@ -611,7 +624,6 @@ namespace ElainKlinikka2._0
         {
             this.IsEnabled = true;
             this.Activate();
-            LoadPetTable();
             LoadAppointmentTable();
             Loading();
             appointmentGrid.UnselectAll();
@@ -621,7 +633,86 @@ namespace ElainKlinikka2._0
         {
             LoadAppointmentTable();
         }
+        private void UpdateAppointment(object sender, RoutedEventArgs e)
+        {
+            if (selectedIDFromGrid != null && selectedIDFromGrid != "")
+            {
+                if (selectedPetOwner != "CANCELLED")
+                {
+                    var window = new AppointmentWindow_Update(this, selectedIDFromGrid, false);
+                    window.Owner = this;
+                    window.Show();
+                    this.IsEnabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Valitsemasi varaus on peruttu");
+                }
+            }
+        }
 
+        private void ViewPayments(object sender, RoutedEventArgs e)
+        {
+          if (selectedIDFromGrid != null && selectedIDFromGrid != "")
+            {
+                var window = new Payments(this, selectedIDFromGrid, selectedPetOwner);
+                window.Owner = this;
+                window.Show();
+                this.IsEnabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Valitse ensin lemmikki");
+            }
+        }
+
+        private void AppointmentGridSelection(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (appointmentGrid.SelectedItem != null)
+                {
+                    if (appointmentGrid.SelectedItem is Appointment)
+                    {
+                        var row = (Appointment)appointmentGrid.SelectedItem;
+
+                        if (row != null)
+                        {
+                            selectedIDFromGrid = row.appointmentID;
+                            selectedPetOwner = row.Reason;
+                            Console.WriteLine(selectedIDFromGrid);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void CancelAppointment(object sender, RoutedEventArgs e)
+        {
+            if (selectedIDFromGrid != null && selectedIDFromGrid != "")
+            {
+                if (MessageBox.Show("Cancel Appointment?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    var app = (Appointment)appointmentGrid.SelectedItem;
+                    Appointment app2 = new Appointment
+                    {
+                        appointmentID = app.appointmentID,
+                        Reason = "CANCELLED",
+                        petID = app.petID,
+                        employeeID = "0",
+                        Day = app.Day,
+                        Month = app.Month,
+                        Year = app.Year
+                    };
+
+                    db.UpdateTheAppointment(app2);
+                    CloseAppointmentWindow();
+                }
+            }
+        }
 
         #endregion 
 
@@ -683,6 +774,7 @@ namespace ElainKlinikka2._0
 
         void HideAll()
         {
+            selectedIDFromGrid = "";
             PetDBCanvas.Visibility = Visibility.Hidden;
             ownerDBCanvas.Visibility = Visibility.Hidden;
             appointmentCanvas.Visibility = Visibility.Hidden;
@@ -775,5 +867,43 @@ namespace ElainKlinikka2._0
             loadingCanva.Visibility = Visibility.Hidden;
         }
 
+        private void PetsNotVisited(object sender, RoutedEventArgs e)
+        {
+            List<String> petIDs =  db.GetAppointment_ThisYear();
+            List<String> noDupes = petIDs.Distinct().ToList();
+           
+            
+            string petInfo = "";
+
+            foreach (string s in noDupes)
+            {
+                Console.WriteLine("String ID : " + s);
+            }
+
+
+            foreach (Pet pet in pets)
+            {
+
+                if (!noDupes.Contains(pet.petID))
+                {
+                    Owner o = db.GetOwner(pet.ownerID);
+                    Appointment a = db.GetLastAppointment(pet.petID);
+                    petInfo += "\nViimeisin käynti: " + a.Day + " / " + a.Month + " / " + a.Year;
+                    petInfo += "\nLemmikki: " + pet.petID + " " + pet.petName;
+                    petInfo += "\nOmistaja: " + o.Forename + " " + o.Surname;
+                    petInfo += "\nPuhelin nro: " + o.Phonenum;
+                    petInfo += "\n___________________________________";
+                }
+
+            }
+
+            MessageBox.Show(petInfo);
+        }
+
+        private void CalculateUnpaidVisits(object sender, RoutedEventArgs e)
+        {
+          string x =  unpaidCal.CalculateUnpaidVisits();
+            MessageBox.Show(x);
+        }
     }
 }

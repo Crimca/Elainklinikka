@@ -83,6 +83,7 @@ namespace ElainKlinikka2._0.Pages
             pet.ownerID = cb_OwnerID.SelectedItem.ToString().Split('|')[0];
             pet.animalID = cb_AnimalID.SelectedItem.ToString().Split('|')[0];
             pet.comment = "";
+            pet.alive = "1";
 
             db.InsertPet(pet);
 

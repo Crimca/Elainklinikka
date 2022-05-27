@@ -30,6 +30,9 @@ namespace ElainKlinikka2._0.Pages
             LoadPet(petID);
             this.window = window;
             this.Topmost = true;
+
+            cb_alive.Items.Add("Elossa");
+            cb_alive.Items.Add("Kuollut");
         }
 
         void LoadPet(string petID)
@@ -44,10 +47,7 @@ namespace ElainKlinikka2._0.Pages
             tb_petVaccination.Text = pet.vaccinations;
             tb_petPrescriptions.Text = pet.prescriptions;
             tb_petDiagnosis.Text = pet.diagnoses;
-            tb_petComment.Text = pet.comment;
-
-
-            Console.WriteLine(pet.petName);
+            tb_petComment.Text = pet.comment;    
         }
 
         private void ClickToMoveWindow(object sender, MouseButtonEventArgs e)
@@ -77,7 +77,8 @@ namespace ElainKlinikka2._0.Pages
                 vaccinations = tb_petVaccination.Text,
                 prescriptions = tb_petPrescriptions.Text,
                 diagnoses = tb_petDiagnosis.Text,
-                comment = tb_petComment.Text
+                comment = tb_petComment.Text,
+                alive = cb_alive.SelectedItem.ToString() == "Elossa" ? "1" : "0"
             };
 
             db.UpdatePet(pet);

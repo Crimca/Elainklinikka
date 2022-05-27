@@ -23,6 +23,8 @@ namespace ElainKlinikka2._0.Pages
         database db;
         MainWindow window;
         List<string> bookedAppointments;
+        List<PriceList> pricing;
+
         bool doubleBooked = false;
 
         public AppointmentWindow_New(MainWindow window)
@@ -32,6 +34,8 @@ namespace ElainKlinikka2._0.Pages
             this.window = window;
             this.Topmost = true;
             tb_appointmentID.Text = db.GetNextAppointmentID().ToString();
+
+            pricing = new List<PriceList>();
             loadComboBoxes();
 
             bookedAppointments = new List<string>();
@@ -43,15 +47,15 @@ namespace ElainKlinikka2._0.Pages
             cb_year.Items.Add(2022);
             cb_year.Items.Add(2023);
 
-            cb_month.Items.Add("1|January");           
-            cb_month.Items.Add("2|February");          
-            cb_month.Items.Add("3|March");             
-            cb_month.Items.Add("4|April");           
-            cb_month.Items.Add("5|May");               
-            cb_month.Items.Add("6|June");            
-            cb_month.Items.Add("7|July");              
-            cb_month.Items.Add("8|August");            
-            cb_month.Items.Add("9|September");       
+            cb_month.Items.Add("01|January");           
+            cb_month.Items.Add("02|February");          
+            cb_month.Items.Add("03|March");             
+            cb_month.Items.Add("04|April");           
+            cb_month.Items.Add("05|May");               
+            cb_month.Items.Add("06|June");            
+            cb_month.Items.Add("07|July");              
+            cb_month.Items.Add("08|August");            
+            cb_month.Items.Add("09|September");       
             cb_month.Items.Add("10|October");           
             cb_month.Items.Add("11|November");        
             cb_month.Items.Add("12|December");
@@ -68,6 +72,12 @@ namespace ElainKlinikka2._0.Pages
             foreach (Pet o in pets)
             {
                 cb_pet.Items.Add(o.petID + "|" + o.petName);
+            }
+
+            pricing = db.GetPrices();
+            foreach (PriceList o in pricing)
+            {
+                cb_reason.Items.Add(o.itemID + "|" + o.Procedure + "|" + o.Price);
             }
         }
 
@@ -86,16 +96,26 @@ namespace ElainKlinikka2._0.Pages
         {
             cb_day.Items.Clear();
 
-            if (cb_month.SelectedIndex == 0 || cb_month.SelectedIndex == 2 || cb_month.SelectedIndex == 4 || cb_month.SelectedIndex == 6 || cb_month.SelectedIndex == 7 || cb_month.SelectedIndex == 9 || cb_month.SelectedIndex == 11)           
-                for(int i = 1; i <= 31; i++)
-                    cb_day.Items.Add(i);
+            if (cb_month.SelectedIndex == 0 || cb_month.SelectedIndex == 2 || cb_month.SelectedIndex == 4 || cb_month.SelectedIndex == 6 || cb_month.SelectedIndex == 7 || cb_month.SelectedIndex == 9 || cb_month.SelectedIndex == 11)
+                for (int i = 1; i <= 31; i++)
+                    if (i < 10)
+                        cb_day.Items.Add("0" + i);
+                    else
+                        cb_day.Items.Add(i);
 
             else if (cb_month.SelectedIndex == 3 || cb_month.SelectedIndex == 5 || cb_month.SelectedIndex == 8 || cb_month.SelectedIndex == 10)
                 for (int i = 1; i <= 30; i++)
-                    cb_day.Items.Add(i);
-            else 
+                    if (i < 10)
+                        cb_day.Items.Add("0" + i);
+                    else
+                        cb_day.Items.Add(i);
+            else
                 for (int i = 1; i <= 28; i++)
-                    cb_day.Items.Add(i);
+                    if (i < 10)
+                        cb_day.Items.Add("0" + i);
+                    else
+                        cb_day.Items.Add(i);
+
         }
 
 
@@ -103,26 +123,29 @@ namespace ElainKlinikka2._0.Pages
         private void SaveInformation(object sender, RoutedEventArgs e)
         {
             doubleBooked = false;
-            foreach (string s in bookedAppointments)
+            if (cb_day.SelectedIndex > -1)
             {
-                if (s.Split('|')[0].Contains(cb_employee.SelectedItem.ToString().Split('|')[0]))
+                foreach (string s in bookedAppointments)
                 {
-                    Console.WriteLine("Matched employee " + s.Split('|')[0] + " = " + cb_employee.SelectedItem.ToString().Split('|')[0]);
-                    Console.WriteLine("Day " + s.Split('|')[1].Split('_')[0] + " = " + cb_day.SelectedItem.ToString());
-
-                    if (s.Split('|')[1].Split('_')[0].Contains(cb_day.SelectedItem.ToString()))
+                    if (s.Split('|')[0].Contains(cb_employee.SelectedItem.ToString().Split('|')[0]))
                     {
-                        Console.WriteLine("Matched day");
-                        if (s.Split('|')[1].Split('_')[1].Contains(cb_month.SelectedItem.ToString().Split('|')[0]))
-                        {
-                            Console.WriteLine("Matched month");
-                            if (s.Split('|')[1].Split('_')[2].Contains(cb_year.SelectedItem.ToString()))
-                            {
-                                Console.WriteLine("Matched year");
-                                doubleBooked = true;
-                                break;
-                            }
+                        Console.WriteLine("Matched employee " + s.Split('|')[0] + " = " + cb_employee.SelectedItem.ToString().Split('|')[0]);
+                        Console.WriteLine("Day " + s.Split('|')[1].Split('_')[0] + " = " + cb_day.SelectedItem.ToString());
 
+                        if (s.Split('|')[1].Split('_')[0].Contains(cb_day.SelectedItem.ToString()))
+                        {
+                            Console.WriteLine("Matched day");
+                            if (s.Split('|')[1].Split('_')[1].Contains(cb_month.SelectedItem.ToString().Split('|')[0]))
+                            {
+                                Console.WriteLine("Matched month");
+                                if (s.Split('|')[1].Split('_')[2].Contains(cb_year.SelectedItem.ToString()))
+                                {
+                                    Console.WriteLine("Matched year");
+                                    doubleBooked = true;
+                                    break;
+                                }
+
+                            }
                         }
                     }
                 }
@@ -130,23 +153,39 @@ namespace ElainKlinikka2._0.Pages
 
             if (!doubleBooked)
             {
-                //Owner owner = new Owner
-                //{
-                //    //   ownerID = Int32.Parse(tb_ownerID.Text.ToString()),
-                //    //   Forename = tb_forename.Text,
-                //    //   Surname = tb_surname.Text,
-                //    //   Streetname = tb_streetname.Text,
-                //    //   Postalcode = tb_postcode.Text,
-                //    //   City = tb_city.Text,
-                //    //   Phonenum = tb_phonenum.Text
-                //};
-                //
-                //db.UpdateOwner(owner);
-                MessageBox.Show("Not Double booked?");
+                Appointment app = new Appointment
+                {
+                    appointmentID = tb_appointmentID.Text,
+                    Reason = cb_reason.SelectedItem.ToString().Split('|')[0],
+                    petID = cb_pet.SelectedItem.ToString().Split('|')[0],
+                    employeeID = cb_employee.SelectedItem.ToString().Split('|')[0],
+                    Day = cb_day.SelectedItem.ToString(),
+                    Month = cb_month.SelectedItem.ToString().Split('|')[0],
+                    Year = cb_year.SelectedItem.ToString()
+                };
+                db.InsertAppointment(app);
+
+                Pet p = db.LoadPet(cb_pet.SelectedItem.ToString().Split('|')[0]);
+
+                Console.WriteLine(app.Reason  + "|" + pricing[Int32.Parse(app.Reason) - 1].Price);
+
+                Payment pay = new Payment
+                {
+                    paymentID = db.GetNextPaymentID(),
+                    ownerID = p.ownerID,
+                    petID = cb_pet.SelectedItem.ToString().Split('|')[0],
+                    appointmentID = app.appointmentID,
+                    paymentValue = pricing[Int32.Parse(app.Reason) - 1].Price,
+                    paid = "Ei maksettu"
+                };
+
+                db.InsertPayment(pay);
+                window.CloseAppointmentWindow();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("That Employee is booked. Please Selected a new time");
+                MessageBox.Show("Työntekijä on varattu. Valitse uusi aika");
             }
         }
 

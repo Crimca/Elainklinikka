@@ -53,6 +53,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -83,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AppointmentWindow_Update.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\KirjautumisSivu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +107,7 @@
     <Compile Include="Helpers\Payment.cs" />
     <Compile Include="Helpers\Pet.cs" />
     <Compile Include="Helpers\PriceList.cs" />
+    <Compile Include="Helpers\UnpaidCalculation.cs" />
     <Compile Include="OLD\Asiakas.cs" />
     <Compile Include="Helpers\database.cs" />
     <Compile Include="OLD\DatabaseHandler.cs" />
@@ -109,11 +115,17 @@
     <Compile Include="Pages\AppointmentWindow_New.xaml.cs">
       <DependentUpon>AppointmentWindow_New.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AppointmentWindow_Update.xaml.cs">
+      <DependentUpon>AppointmentWindow_Update.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OwnerWindow_New.xaml.cs">
       <DependentUpon>OwnerWindow_New.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OwnerWindow_Update.xaml.cs">
       <DependentUpon>OwnerWindow_Update.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Payments.xaml.cs">
+      <DependentUpon>Payments.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PetWindow_New.xaml.cs">
       <DependentUpon>PetWindow_New.xaml</DependentUpon>
@@ -143,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OwnerWindow_Update.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Payments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

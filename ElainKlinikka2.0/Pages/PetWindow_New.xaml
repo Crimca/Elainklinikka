@@ -32,7 +32,7 @@
         <TextBox x:Name="tb_petName" Grid.Row="2" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Width="252" FontSize="24" Margin="243,0,0,0" Height="35"/>
 
         <Label Grid.Row="3" Content="Paino" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="0,-0.5,0,-10"/>
-        <TextBox x:Name="tb_petWeight" Grid.Row="3" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Width="252" FontSize="24" Margin="243,0,0,0" Height="35"/>
+        <TextBox x:Name="tb_petWeight" Grid.Row="3" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="176" FontSize="24" Margin="248,0,0,0" Height="35"/>
 
         <Label Grid.Row="4" Content="Ikä&#xA;" HorizontalAlignment="Left" FontSize="24" Margin="0,0,0,25" Grid.RowSpan="2"/>
         <TextBox x:Name="tb_petAge" Grid.Row="4" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Width="252" FontSize="24" Margin="243,0,0,0" Height="35"/>
@@ -44,6 +44,7 @@
 
         <Label Grid.Row="6" Content="Lemmikin tyyppi" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="0,-0.5,0,-10"/>
         <ComboBox x:Name="cb_AnimalID" HorizontalAlignment="Left" Margin="250,0,0,0" Grid.Row="6" VerticalAlignment="Center" Width="250" Height="37" FontSize="24"/>
+        <Label Grid.Row="2" Content="KG" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="429,44,0,0" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>
