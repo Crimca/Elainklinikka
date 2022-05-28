@@ -86,6 +86,12 @@ namespace ElainKlinikka2._0
             PetDB.Items.Clear();
             pets = db.LoadPetTable();
             animals = db.GetAnimalTypes();
+            foreach (Animal item in animals)
+            {
+                item.animalID = Int32.Parse(item.animalID) < 10 ? "0" + item.animalID : item.animalID;
+                Console.WriteLine(item.animalID + "|" + item.breed + "|" + item.species);
+            }
+
             List<Animal> SortedList = animals.OrderBy(o => o.animalID).ToList();
 
 
